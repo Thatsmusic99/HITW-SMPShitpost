@@ -3,11 +3,10 @@ package io.github.thatsmusic99.hitwshitpost.listeners;
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
@@ -30,12 +29,22 @@ public class WeatherListener implements Listener {
         }
 
         // Start the raining >:)
-        weatherTask = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
+        Random rand = new Random();
+        int weatherTrap = rand.nextInt(2);
 
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                stormArrows(player);
-            }
-        }, 20, 5);
+        switch (weatherTrap) {
+            case 0 -> weatherTask = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    stormArrows(player);
+                }
+            }, 20, 5);
+            case 1 -> weatherTask = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    stormSnowballs(player);
+                }
+            }, 20, 5);
+        }
+
     }
 
     private void stormArrows(final @NotNull Player player) {
@@ -57,6 +66,34 @@ public class WeatherListener implements Listener {
             Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), entity::remove, 60);
         }
 
+    }
+
+    private void stormSnowballs(final @NotNull Player player) {
+
+        Random rand = new Random();
+
+        int snowballs = rand.nextInt(10) + 1;
+
+        // Pick random coordinates
+        for (int i = 0; i < snowballs; i++) {
+
+            double x = rand.nextInt(10) - 5 + player.getX();
+            double y = player.getY() + 10;
+            double z = rand.nextInt(10) - 5 + player.getZ();
+
+            Snowball entity = (Snowball) player.getWorld().spawnEntity(new Location(player.getWorld(), x, y, z), EntityType.SNOWBALL);
+            entity.setVelocity(new Vector(rand.nextDouble(2) - 1, -1, rand.nextDouble(2) - 1));
+        }
+
+    }
+
+    // Make snowballs do a teeny bit of damage(?) and add knockback.
+    @EventHandler
+    public void onSnowballHit(ProjectileHitEvent e) {
+        if (e.getEntity() instanceof Snowball snowball && e.getHitEntity() instanceof Player player) {
+            player.knockback(0.5, 1, 1);
+            player.damage(0.1);
+        }
     }
 
 }

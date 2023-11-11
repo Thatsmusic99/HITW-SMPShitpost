@@ -71,13 +71,6 @@ public class PlayerListener implements Listener {
     public void playerJoinEvent(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         jumpBoost.apply(player);
-
-        Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), new Runnable() {
-            @Override
-            public void run() {
-                applyGravity();
-            }
-        }, 100L);
     }
     // Quit Event - making sure to remove the jump boost from the player.
     @EventHandler
