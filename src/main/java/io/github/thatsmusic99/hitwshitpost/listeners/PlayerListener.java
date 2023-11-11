@@ -2,6 +2,8 @@ package io.github.thatsmusic99.hitwshitpost.listeners;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,28 +14,28 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class PlayerListener implements Listener {
-    int sec = 20;
-    PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, PotionEffect.INFINITE_DURATION, 1, false, false);
-    PotionEffect springy = new PotionEffect(PotionEffectType.JUMP, (sec * 8), 3, false, false);
-    PotionEffect speedBoost = new PotionEffect(PotionEffectType.SPEED, (sec * 8), 4, false, false);
-    PotionEffect legDay = new PotionEffect(PotionEffectType.SLOW, (sec * 10), 2, false, false);
-
-    PotionEffect gravity = new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * 15), 1, false, false);
+    static int sec = 20;
+    static PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, PotionEffect.INFINITE_DURATION, 1, false, false);
+    static PotionEffect springy = new PotionEffect(PotionEffectType.JUMP, (sec * 8), 3, false, false);
+    static PotionEffect speedBoost = new PotionEffect(PotionEffectType.SPEED, (sec * 8), 4, false, false);
+    static PotionEffect legDay = new PotionEffect(PotionEffectType.SLOW, (sec * 10), 2, false, false);
+    static PotionEffect gravity = new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * 15), 1, false, false);
+    static PotionEffect reveal = new PotionEffect(PotionEffectType.BLINDNESS, (sec * 2), 0, false, false);
 
     // Speedboost Trap
-    public void applySpeed() {
+    public static void applySpeed() {
         for (Player p : Bukkit.getOnlinePlayers())  {
             p.addPotionEffect(speedBoost);
         }
     }
 
-    public void applySlow() {
+    public static void applySlow() {
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.addPotionEffect(legDay);
         }
     }
 
-    public void applySpringy() {
+    public static void applySpringy() {
         for (Player p : Bukkit.getOnlinePlayers())  {
             p.removePotionEffect(PotionEffectType.JUMP);
             p.addPotionEffect(springy);
@@ -43,13 +45,24 @@ public class PlayerListener implements Listener {
                 public void run() {
                     p.addPotionEffect(jumpBoost);
                 }
-            }, 400L);
+            }, 165L);
         }
     }
 
-    public void applyGravity() {
+    public static void applyGravity() {
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.addPotionEffect(gravity);
+        }
+    }
+
+    public static void trapReveal(String trapName) {
+        for (Player p: Bukkit.getOnlinePlayers()) {
+            p.addPotionEffect(reveal);
+
+            String trap = trapName.replace('_', ' ');
+            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3[&eTRAP ALERT&3]&c Trap activated: " + "&6" +  trap));
+            p.sendTitle(ChatColor.GOLD + trap, "");
+            p.playSound(p.getLocation(), Sound.AMBIENT_CAVE, 5.0F, 0.7F);
         }
     }
 

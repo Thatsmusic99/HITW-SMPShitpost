@@ -1,3 +1,11 @@
 name: HITWShitpost
 version: 1.0
 main: io.github.thatsmusic99.hitwshitpost.HITWShitpost
+
+permissions:
+  hitw.admin:
+    default: op
+
+commands:
+  instanttrap:
+    description: Instantly activate a random trap.
