@@ -30,7 +30,7 @@ public class WeatherListener implements Listener {
 
         // Start the raining >:)
         Random rand = new Random();
-        int weatherTrap = rand.nextInt(2);
+        int weatherTrap = rand.nextInt(3);
 
         switch (weatherTrap) {
             case 0 -> weatherTask = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
@@ -43,6 +43,7 @@ public class WeatherListener implements Listener {
                     stormSnowballs(player);
                 }
             }, 20, 5);
+            case 2 -> { weatherTask = null; }
         }
 
     }

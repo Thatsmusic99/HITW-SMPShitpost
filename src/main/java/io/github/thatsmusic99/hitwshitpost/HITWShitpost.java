@@ -8,7 +8,6 @@ import io.github.thatsmusic99.hitwshitpost.listeners.WeatherListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.time.Instant;
 import java.util.Objects;
 import java.util.Random;
 
@@ -25,8 +24,9 @@ public class HITWShitpost extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 
         Objects.requireNonNull(getCommand("instanttrap")).setExecutor(new InstantTrap());
+        Objects.requireNonNull(getCommand("instanttrap")).setTabCompleter(new InstantTrap());
 
-        Bukkit.getScheduler().runTaskTimer(this, HITWShitpost::PickTrap, (20*60), (20*60)*5);
+        Bukkit.getScheduler().runTaskTimer(this, HITWShitpost::PickTrap, (20*30), (20*60)*5);
     }
 
     public static void PickTrap() {
@@ -44,6 +44,9 @@ public class HITWShitpost extends JavaPlugin {
             case CREEPY_CRAWLIES -> MobTraps.spawnSpiders();
             case GUARDIANS -> MobTraps.spawnFish();
             case PILLAGERS -> MobTraps.spawnPillagers();
+            case JACK_FROST -> MobTraps.spawnJackFrost();
+            case THE_SKELETON_APPEARS -> MobTraps.spawnSkeleton();
+            case AW_MAN -> MobTraps.spawnCreeper();
         }
     }
 

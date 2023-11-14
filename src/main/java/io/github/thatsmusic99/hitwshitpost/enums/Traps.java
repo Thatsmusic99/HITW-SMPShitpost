@@ -8,6 +8,9 @@ public enum Traps {
     SO_LONELY,
     CREEPY_CRAWLIES,
     GUARDIANS,
-    PILLAGERS
+    PILLAGERS,
+    JACK_FROST,
+    THE_SKELETON_APPEARS,
+    AW_MAN
 
 }

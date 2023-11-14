@@ -20,7 +20,7 @@ public class PlayerListener implements Listener {
     static PotionEffect speedBoost = new PotionEffect(PotionEffectType.SPEED, (sec * 8), 4, false, false);
     static PotionEffect legDay = new PotionEffect(PotionEffectType.SLOW, (sec * 10), 2, false, false);
     static PotionEffect gravity = new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * 15), 1, false, false);
-    static PotionEffect reveal = new PotionEffect(PotionEffectType.BLINDNESS, (sec * 2), 0, false, false);
+    static PotionEffect reveal = new PotionEffect(PotionEffectType.BLINDNESS, (sec), 0, false, false);
 
     // Speedboost Trap
     public static void applySpeed() {
@@ -61,7 +61,7 @@ public class PlayerListener implements Listener {
 
             String trap = trapName.replace('_', ' ');
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3[&eTRAP ALERT&3]&c Trap activated: " + "&6" +  trap));
-            p.sendTitle(ChatColor.GOLD + trap, "");
+            p.sendTitle("", ChatColor.GOLD + trap);
             p.playSound(p.getLocation(), Sound.AMBIENT_CAVE, 5.0F, 0.7F);
         }
     }
