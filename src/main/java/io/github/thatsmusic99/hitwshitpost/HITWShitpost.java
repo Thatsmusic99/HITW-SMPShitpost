@@ -10,7 +10,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class HITWShitpost extends JavaPlugin {
 
@@ -34,9 +33,7 @@ public class HITWShitpost extends JavaPlugin {
     }
 
     public static void PickTrap() {
-        Random random = new Random();
-        int index = random.nextInt(Traps.values().length);
-        Traps trap = Traps.values()[index];
+        Traps trap = Traps.pickTrap();
         PlayerListener.trapReveal(trap.name());
 
         switch (trap) {

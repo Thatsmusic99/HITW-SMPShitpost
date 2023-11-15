@@ -8,7 +8,6 @@ import org.bukkit.entity.*;
 import java.util.Objects;
 import java.util.Random;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public class MobTraps {
     static int zombieAmount = 3;
