@@ -27,7 +27,7 @@ public class BossBarManager {
     public BossBarManager() {
         instance = this;
 
-        timerDisplay = Bukkit.createBossBar(ChatColor.GOLD + "Time until next trap", BarColor.WHITE, BarStyle.SOLID);
+        timerDisplay = Bukkit.createBossBar(ChatColor.GOLD + "Time until next trap", BarColor.GREEN, BarStyle.SOLID);
         secondsLeft = 300;
     }
 
@@ -50,6 +50,7 @@ public class BossBarManager {
 
         timerDisplay.setProgress(secondsLeft / (double) TOTAL_SECONDS_COUNTDOWN);
     }
+
 
     public static void createTimeDisplay(int time) {
         String message = "Time until the next trap";
