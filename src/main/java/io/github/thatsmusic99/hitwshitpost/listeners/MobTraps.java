@@ -7,6 +7,8 @@ import org.bukkit.entity.*;
 
 import java.util.Objects;
 import java.util.Random;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class MobTraps {
     static int zombieAmount = 3;
@@ -16,108 +18,62 @@ public class MobTraps {
     static int jackFrostAmount = 4;
 
     public static void spawnZombies() {
-        Random rand = new Random();
 
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            for (int i = 0; i < zombieAmount; i++) {
-                double x = rand.nextInt(10) - 5 + p.getX();
-                double y = p.getY();
-                double z = rand.nextInt(10) - 5 + p.getZ();
-
-                p.getWorld().spawnEntity(new Location(p.getWorld(), x, y, z), EntityType.ZOMBIE);
-            }
-        }
+        spawnMob(zombieAmount, Zombie.class, (player, zombie) -> {});
     }
 
     public static void spawnSpiders() {
-        Random rand = new Random();
 
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            for (int i = 0; i < spiderAmount; i++) {
-                double x = rand.nextInt(10) - 5 + p.getX();
-                double y = p.getY();
-                double z = rand.nextInt(10) - 5 + p.getZ();
-
-                Spider entity = (Spider) p.getWorld().spawnEntity(new Location(p.getWorld(), x, y, z), EntityType.SPIDER);
-                entity.setTarget(p);
-            }
-        }
+        spawnMob(spiderAmount, Spider.class, (player, spider) -> spider.setTarget(player));
     }
 
     public static void spawnFish() {
-        Random rand = new Random();
 
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            for (int i = 0; i < fishAmount; i++) {
-                double x = rand.nextInt(10) - 5 + p.getX();
-                double y = p.getY();
-                double z = rand.nextInt(10) - 5 + p.getZ();
-
-                p.getWorld().spawnEntity(new Location(p.getWorld(), x, y, z), EntityType.GUARDIAN);
-            }
-        }
+        spawnMob(fishAmount, Guardian.class, (player, guardian) -> {});
     }
 
     public static void spawnPillagers() {
-        Random rand = new Random();
 
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            for (int i = 0; i < pillagerAmount; i++) {
-                double x = rand.nextInt(10) - 5 + p.getX();
-                double y = p.getY();
-                double z = rand.nextInt(10) - 5 + p.getZ();
-
-                Pillager entity = (Pillager) p.getWorld().spawnEntity(new Location(p.getWorld(), x, y, z), EntityType.PILLAGER);
-                entity.setPatrolLeader(false); // We don't need raids fr
-            }
-        }
+        spawnMob(pillagerAmount, Pillager.class, (player, pillager) -> pillager.setPatrolLeader(false));
     }
 
     public static void spawnJackFrost() {
-        Random rand = new Random();
 
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            for (int i = 0; i < jackFrostAmount; i++) {
-                double x = rand.nextInt(10) - 5 + p.getX();
-                double y = p.getY();
-                double z = rand.nextInt(10) - 5 + p.getZ();
-
-                Snowman entity = (Snowman) p.getWorld().spawnEntity(new Location(p.getWorld(), x, y, z), EntityType.SNOWMAN);
-            }
-        }
+        spawnMob(jackFrostAmount, Snowman.class, (player, snowman) -> {});
     }
 
     public static void spawnCreeper() {
+
+        spawnMob(1, Creeper.class, (player, creeper) -> {
+            creeper.setTarget(player);
+            Objects.requireNonNull(creeper.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.4);
+            Objects.requireNonNull(creeper.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(1);
+            creeper.setHealth(1);
+        });
+    }
+
+    public static void spawnSkeleton() {
+
+        spawnMob(1, Skeleton.class, (player, skeleton) -> {
+            Objects.requireNonNull(skeleton.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(10);
+            Objects.requireNonNull(skeleton.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(2);
+            skeleton.setHealth(10);
+            skeleton.setTarget(player);
+        });
+    }
+
+    public static <T extends Entity> void spawnMob(int amount, Class<T> entityClass, BiConsumer<Player, T> postSpawn) {
         Random rand = new Random();
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < amount; i++) {
                 double x = rand.nextInt(10) - 5 + p.getX();
                 double y = p.getY();
                 double z = rand.nextInt(10) - 5 + p.getZ();
 
-                Creeper entity = (Creeper) p.getWorld().spawnEntity(new Location(p.getWorld(), x, y, z), EntityType.CREEPER);
-                entity.setTarget(p);
-                Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.4);
-                Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(1);
-                entity.setHealth(1);
+                T entity = p.getWorld().spawn(new Location(p.getWorld(), x, y, z), entityClass);
+                postSpawn.accept(p, entity);
             }
-        }
-    }
-
-    public static void spawnSkeleton() {
-        Random rand = new Random();
-
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            double x = rand.nextInt(10) - 5 + p.getX();
-            double y = p.getY();
-            double z = rand.nextInt(10) - 5 + p.getZ();
-
-            Skeleton entity = (Skeleton) p.getWorld().spawnEntity(new Location(p.getWorld(), x, y, z), EntityType.SKELETON);
-            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(10);
-            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(2);
-            entity.setHealth(10);
-            entity.setTarget(p);
         }
     }
 }
