@@ -27,7 +27,9 @@ public class BossBarManager {
     public BossBarManager() {
         instance = this;
 
-        timerDisplay = Bukkit.createBossBar(ChatColor.GOLD + "Time until next trap", BarColor.GREEN, BarStyle.SOLID);
+
+
+        timerDisplay = Bukkit.createBossBar(ChatColor.GOLD + "Next trap in: ", BarColor.GREEN, BarStyle.SOLID);
         secondsLeft = 300;
     }
 
@@ -48,14 +50,19 @@ public class BossBarManager {
             secondsLeft = TOTAL_SECONDS_COUNTDOWN;
         }
 
+        int seconds = (secondsLeft % 60);
+        int minutes = (secondsLeft % (60 * 60) / 60);
         timerDisplay.setProgress(secondsLeft / (double) TOTAL_SECONDS_COUNTDOWN);
+        timerDisplay.setTitle(String.format(ChatColor.GOLD + "Next trap in %02d:%02d", minutes, seconds));
     }
 
 
     public static void createTimeDisplay(int time) {
-        String message = "Time until the next trap";
-        int timeLeft = 1;
-        BossBar timeDisplay = Bukkit.createBossBar(ChatColor.GOLD + message, BarColor.WHITE, BarStyle.SOLID);
+        String message = "Next trap in: ";
+        double timeLeft = 1;
+        double seconds = Math.floor((timeLeft % 60));
+        double minutes = Math.floor(timeLeft % (60 * 60) / 60);
+        BossBar timeDisplay = Bukkit.createBossBar(ChatColor.GOLD + message + minutes + ":" + seconds, BarColor.WHITE, BarStyle.SOLID);
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             timeDisplay.addPlayer(p);

@@ -17,10 +17,10 @@ import org.bukkit.potion.PotionEffectType;
 public class PlayerListener implements Listener {
     static int sec = 20;
     static PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, PotionEffect.INFINITE_DURATION, 1, false, false);
-    static PotionEffect springy = new PotionEffect(PotionEffectType.JUMP, (sec * 8), 3, false, false);
-    static PotionEffect speedBoost = new PotionEffect(PotionEffectType.SPEED, (sec * 8), 4, false, false);
-    static PotionEffect legDay = new PotionEffect(PotionEffectType.SLOW, (sec * 10), 2, false, false);
-    static PotionEffect gravity = new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * 15), 1, false, false);
+    static PotionEffect springy = new PotionEffect(PotionEffectType.JUMP, (sec * 30), 3, false, false);
+    static PotionEffect speedBoost = new PotionEffect(PotionEffectType.SPEED, (sec * 30), 4, false, false);
+    static PotionEffect legDay = new PotionEffect(PotionEffectType.SLOW, (sec * 40), 2, false, false);
+    static PotionEffect gravity = new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * 40), 1, false, false);
     static PotionEffect reveal = new PotionEffect(PotionEffectType.BLINDNESS, (sec), 0, false, false);
 
     // Speedboost Trap
