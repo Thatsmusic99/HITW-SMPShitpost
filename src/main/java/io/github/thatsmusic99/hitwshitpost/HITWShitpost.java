@@ -2,6 +2,7 @@ package io.github.thatsmusic99.hitwshitpost;
 
 import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.enums.Traps;
+import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import io.github.thatsmusic99.hitwshitpost.listeners.MobTraps;
 import io.github.thatsmusic99.hitwshitpost.listeners.PlayerListener;
 import io.github.thatsmusic99.hitwshitpost.listeners.WeatherListener;
@@ -26,7 +27,10 @@ public class HITWShitpost extends JavaPlugin {
         Objects.requireNonNull(getCommand("instanttrap")).setExecutor(new InstantTrap());
         Objects.requireNonNull(getCommand("instanttrap")).setTabCompleter(new InstantTrap());
 
-        Bukkit.getScheduler().runTaskTimer(this, HITWShitpost::PickTrap, (20*30), (20*60)*5);
+        final BossBarManager bossBarManager = new BossBarManager();
+        Bukkit.getScheduler().runTaskTimer(this, bossBarManager::tick, 20, 20);
+
+        // Bukkit.getScheduler().runTaskTimer(this, HITWShitpost::PickTrap, (20*30), (20*60)*5);
     }
 
     public static void PickTrap() {

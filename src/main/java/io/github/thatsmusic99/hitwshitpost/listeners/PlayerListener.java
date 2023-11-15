@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.listeners;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -71,6 +72,8 @@ public class PlayerListener implements Listener {
     public void playerJoinEvent(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         jumpBoost.apply(player);
+
+        BossBarManager.get().addPlayer(player);
     }
     // Quit Event - making sure to remove the jump boost from the player.
     @EventHandler
