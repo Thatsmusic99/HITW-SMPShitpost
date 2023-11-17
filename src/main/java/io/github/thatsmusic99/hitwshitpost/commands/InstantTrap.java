@@ -67,6 +67,10 @@ public class InstantTrap implements TabExecutor {
                             PlayerListener.trapReveal(Traps.AW_MAN.name());
                             MobTraps.spawnCreeper();
                         }
+                        case "FEELING_HOT" -> {
+                            PlayerListener.trapReveal(Traps.FEELING_HOT.name());
+                            MobTraps.spawnBlaze();
+                        }
                     }
                 } else {
                     HITWShitpost.PickTrap();
@@ -94,7 +98,8 @@ public class InstantTrap implements TabExecutor {
                 "PILLAGERS",
                 "JACK_FROST",
                 "THE_SKELETON_APPEARS",
-                "AW_MAN"
+                "AW_MAN",
+                "FEELING_HOT"
         ));
         List<String> results = new ArrayList<>();
         if (args.length == 1) {

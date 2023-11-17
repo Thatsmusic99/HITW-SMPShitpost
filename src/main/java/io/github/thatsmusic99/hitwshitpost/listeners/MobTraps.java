@@ -16,6 +16,8 @@ public class MobTraps {
     static int pillagerAmount = 4;
     static int jackFrostAmount = 4;
 
+    static int blazeAmount = 2;
+
     public static void spawnZombies() {
 
         spawnMob(zombieAmount, Zombie.class, (player, zombie) -> {});
@@ -49,6 +51,11 @@ public class MobTraps {
             Objects.requireNonNull(creeper.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(1);
             creeper.setHealth(1);
         });
+    }
+
+    public static void spawnBlaze() {
+
+        spawnMob(blazeAmount, Blaze.class, (player, blaze) -> {});
     }
 
     public static void spawnSkeleton() {

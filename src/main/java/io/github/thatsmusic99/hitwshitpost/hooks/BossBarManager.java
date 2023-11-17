@@ -17,8 +17,6 @@ public class BossBarManager {
 
         - As soon as player joins the boss bar shall show up for them
         - Bossbar has to show the actual time left until next trap
-
-        TODO Make the bossbar display the countdown
      */
     private static final int TOTAL_SECONDS_COUNTDOWN = 300;
     private static BossBarManager instance;

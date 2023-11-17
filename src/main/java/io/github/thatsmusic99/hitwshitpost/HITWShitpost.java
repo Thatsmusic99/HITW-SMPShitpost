@@ -48,6 +48,7 @@ public class HITWShitpost extends JavaPlugin {
             case JACK_FROST -> MobTraps.spawnJackFrost();
             case THE_SKELETON_APPEARS -> MobTraps.spawnSkeleton();
             case AW_MAN -> MobTraps.spawnCreeper();
+            case FEELING_HOT -> MobTraps.spawnBlaze();
         }
     }
 

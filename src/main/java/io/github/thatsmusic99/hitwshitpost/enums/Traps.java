@@ -12,6 +12,7 @@ public enum Traps {
     GUARDIANS(10),
     PILLAGERS(10),
     JACK_FROST(10),
+    FEELING_HOT(10),
     THE_SKELETON_APPEARS(3),
     AW_MAN(3);
 
