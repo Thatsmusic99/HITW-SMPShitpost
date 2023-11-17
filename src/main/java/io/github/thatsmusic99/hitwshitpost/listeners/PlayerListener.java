@@ -41,12 +41,12 @@ public class PlayerListener implements Listener {
             p.removePotionEffect(PotionEffectType.JUMP);
             p.addPotionEffect(springy);
 
-            Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), new Runnable() {
+            /*Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), new Runnable() {
                 @Override
                 public void run() {
                     p.addPotionEffect(jumpBoost);
                 }
-            }, 165L);
+            }, 600L);*/
         }
     }
 
@@ -63,7 +63,8 @@ public class PlayerListener implements Listener {
             String trap = trapName.replace('_', ' ');
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3[&eTRAP ALERT&3]&c Trap activated: " + "&6" +  trap));
             p.sendTitle("", ChatColor.GOLD + trap);
-            p.playSound(p.getLocation(), Sound.AMBIENT_CAVE, 5.0F, 0.7F);
+            p.playSound(p, Sound.BLOCK_BELL_USE, 6.0F, 0.2F);
+            p.playSound(p, Sound.AMBIENT_CAVE, 0.4F, 0.7F);
         }
     }
 
@@ -94,6 +95,20 @@ public class PlayerListener implements Listener {
                         jumpBoost.apply(player);
                     }
                     }, 5L);
+            }
+        }
+    }
+
+    @EventHandler
+    public void springyRanOut(EntityPotionEffectEvent e) {
+        if (e.getEntity() instanceof Player player) {
+            if (e.getAction().equals(EntityPotionEffectEvent.Action.REMOVED)) {
+                Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), new Runnable() {
+                    @Override
+                    public void run() {
+                        player.addPotionEffect(jumpBoost);
+                    }
+                }, 0L);
             }
         }
     }

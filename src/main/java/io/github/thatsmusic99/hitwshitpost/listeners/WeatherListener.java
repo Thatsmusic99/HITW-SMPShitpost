@@ -17,6 +17,7 @@ import java.util.Random;
 public class WeatherListener implements Listener {
 
     private BukkitTask weatherTask = null;
+    public static boolean isRaining = false; // Used to check if it's raining or not.
 
     @EventHandler
     public void onWeather(WeatherChangeEvent event) {
