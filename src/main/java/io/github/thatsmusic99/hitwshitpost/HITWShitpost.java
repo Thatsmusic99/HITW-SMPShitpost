@@ -3,6 +3,7 @@ package io.github.thatsmusic99.hitwshitpost;
 import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.enums.Traps;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
+import io.github.thatsmusic99.hitwshitpost.listeners.MobListener;
 import io.github.thatsmusic99.hitwshitpost.listeners.MobTraps;
 import io.github.thatsmusic99.hitwshitpost.listeners.PlayerListener;
 import io.github.thatsmusic99.hitwshitpost.listeners.WeatherListener;
@@ -22,6 +23,7 @@ public class HITWShitpost extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new WeatherListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+        getServer().getPluginManager().registerEvents(new MobListener(), this);
 
         Objects.requireNonNull(getCommand("instanttrap")).setExecutor(new InstantTrap());
         Objects.requireNonNull(getCommand("instanttrap")).setTabCompleter(new InstantTrap());
