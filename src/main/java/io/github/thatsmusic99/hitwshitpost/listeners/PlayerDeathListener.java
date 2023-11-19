@@ -43,18 +43,19 @@ public class PlayerDeathListener implements Listener {
                 } else if (player.getLastDamageCause() instanceof EntityDamageByEntityEvent event && (event.getDamager() instanceof Player)) {
                     String message = DeathMessages.PLAYER.get(rand.nextInt(DeathMessages.PLAYER.size()));
                     e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{mob}", event.getDamager().getName())));
-
                 }
             }
             case PROJECTILE -> {
                 if (player.getLastDamageCause() instanceof EntityDamageByEntityEvent event && event.getDamager() instanceof Arrow arrow && arrow.getShooter() != null && arrow.getShooter() instanceof Entity entity) {
                     String message = DeathMessages.SHOT.get(rand.nextInt(DeathMessages.SHOT.size()));
                     e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{mob}", entity.getName())));
+                    break;
                 }
 
                 if (player.getLastDamageCause() instanceof EntityDamageByEntityEvent event && event.getDamager() instanceof LlamaSpit spit && spit.getShooter() != null && spit.getShooter() instanceof Entity entity) {
                     String message = DeathMessages.SPIT.get(rand.nextInt(DeathMessages.SPIT.size()));
                     e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{mob}", entity.getName())));
+                    break;
                 }
                 String message = DeathMessages.PROJECTILE.get(rand.nextInt(DeathMessages.PROJECTILE.size()));
                 e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName())));
@@ -86,7 +87,6 @@ public class PlayerDeathListener implements Listener {
             case DROWNING -> {
                 String message = DeathMessages.DROWN.get(rand.nextInt(DeathMessages.DROWN.size()));
                 e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName())));
-
             }
         }
     }

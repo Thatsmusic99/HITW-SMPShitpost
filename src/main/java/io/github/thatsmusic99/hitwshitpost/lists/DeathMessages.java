@@ -53,13 +53,14 @@ public class DeathMessages {
     public static final List<String> FIRE = new ArrayList<>(Arrays.asList(
             "&6{player} &7was on fire! ...Literally!",
             "&6{player} &7has just figured out that fire is hot.",
-            "&6{player} &7just experienced hell, and is about to experience it even more."
+            "&6{player} &7just experienced hell, and is about to experience it even more.",
+            "&7Did you put yourself into the goblit of fire, &6{player}&7!?"
     ));
 
     public static final List<String> SHOT = new ArrayList<>(Arrays.asList(
             "&6{player} &7was having a duel with &6{mob} &7and forgot how to use a bow.",
-            "&6{player} &7thought they could dodge &6{mob}&7''s arrows.",
-            "&6{player} &7brought a melee weapon to &6{mob}&7''s gun fight."
+            "&6{player} &7thought they could dodge &6{mob}&7's arrows.",
+            "&6{player} &7brought a melee weapon to &6{mob}&7's gun fight."
     ));
 
     public static final List<String> SPIT = new ArrayList<>(Arrays.asList(
@@ -87,7 +88,7 @@ public class DeathMessages {
 
     public static final List<String> DROWN = new ArrayList<>(Arrays.asList(
             "&6{player} &7pretended to be a mermaid and failed.",
-            "&7It seems, that &6{player}&7''s search for air bubbles failed.",
+            "&7It seems, that &6{player}&7's search for air bubbles failed.",
             "&6{player} &7was thirsty and drank too much water.",
             "&6{player} &7said to bring out the whole ocean and forgot to bring themselves out."
     ));
