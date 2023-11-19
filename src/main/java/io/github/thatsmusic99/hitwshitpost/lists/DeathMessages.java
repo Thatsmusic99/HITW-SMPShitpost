@@ -61,4 +61,34 @@ public class DeathMessages {
             "&6{player} &7thought they could dodge &6{mob}&7''s arrows.",
             "&6{player} &7brought a melee weapon to &6{mob}&7''s gun fight."
     ));
+
+    public static final List<String> SPIT = new ArrayList<>(Arrays.asList(
+            "&6{player} &7extended his hand in friendship and &6{mob} &7spat them in their mouth.",
+            "&6{player} &7was spit in the face by &6{mob}&7."
+    ));
+
+    public static final List<String> EXPLOSION = new ArrayList<>(Arrays.asList(
+            "&6{player}&7''s main goal was to blow up.",
+            "&6{player} &7thought this was Dynaball.",
+            "&6{player} &7volunteered in the Arby's commercial and blew up."
+    ));
+
+    public static final List<String> CREEPER = new ArrayList<>(Arrays.asList(
+            "&6{player} &7wanted to hug &6{mob} &7and got what was coming.",
+            "&6{mob}&7!? Aw man! (&6{player}&7 got the bad ending.)",
+            "&6{player} &7has found out that plants can be explosive."
+    ));
+
+    public static final List<String> PLAYER = new ArrayList<>(Arrays.asList(
+            "&6{player} &7lost an argument against &6{killer}&7.",
+            "&6{killer} &7wins against &6{player}&7. FATALITY!",
+            "&6{killer} &7has given &6{player} &7the ultimate clap!"
+    ));
+
+    public static final List<String> DROWN = new ArrayList<>(Arrays.asList(
+            "&6{player} &7pretended to be a mermaid and failed.",
+            "&7It seems, that &6{player}&7''s search for air bubbles failed.",
+            "&6{player} &7was thirsty and drank too much water.",
+            "&6{player} &7said to bring out the whole ocean and forgot to bring themselves out."
+    ));
 }
