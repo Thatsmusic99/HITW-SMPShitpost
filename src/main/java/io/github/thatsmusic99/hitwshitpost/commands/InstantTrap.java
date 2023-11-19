@@ -1,7 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.commands;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
-import io.github.thatsmusic99.hitwshitpost.enums.Traps;
+import io.github.thatsmusic99.hitwshitpost.lists.Traps;
 import io.github.thatsmusic99.hitwshitpost.listeners.MobTraps;
 import io.github.thatsmusic99.hitwshitpost.listeners.PlayerListener;
 import org.bukkit.Bukkit;

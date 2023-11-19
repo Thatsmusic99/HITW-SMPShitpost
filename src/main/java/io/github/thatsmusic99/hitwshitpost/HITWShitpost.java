@@ -1,12 +1,9 @@
 package io.github.thatsmusic99.hitwshitpost;
 
 import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
-import io.github.thatsmusic99.hitwshitpost.enums.Traps;
+import io.github.thatsmusic99.hitwshitpost.lists.Traps;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
-import io.github.thatsmusic99.hitwshitpost.listeners.MobListener;
-import io.github.thatsmusic99.hitwshitpost.listeners.MobTraps;
-import io.github.thatsmusic99.hitwshitpost.listeners.PlayerListener;
-import io.github.thatsmusic99.hitwshitpost.listeners.WeatherListener;
+import io.github.thatsmusic99.hitwshitpost.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,6 +21,7 @@ public class HITWShitpost extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WeatherListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         getServer().getPluginManager().registerEvents(new MobListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
 
         Objects.requireNonNull(getCommand("instanttrap")).setExecutor(new InstantTrap());
         Objects.requireNonNull(getCommand("instanttrap")).setTabCompleter(new InstantTrap());

@@ -1,4 +1,4 @@
-package io.github.thatsmusic99.hitwshitpost.enums;
+package io.github.thatsmusic99.hitwshitpost.lists;
 
 import java.util.Random;
 
