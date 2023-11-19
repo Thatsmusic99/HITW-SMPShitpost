@@ -15,8 +15,9 @@ public class MobTraps {
     static int fishAmount = 3;
     static int pillagerAmount = 4;
     static int jackFrostAmount = 4;
-
     static int blazeAmount = 2;
+    static int beeAmount = 5;
+    static int slimeAmount = 4;
 
     public static void spawnZombies() {
 
@@ -65,6 +66,17 @@ public class MobTraps {
             Objects.requireNonNull(skeleton.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(2);
             skeleton.setHealth(10);
             skeleton.setTarget(player);
+        });
+    }
+
+    public static void spawnBees() {
+        spawnMob(beeAmount, Bee.class, (player, bee) -> {});
+    }
+
+    public static void spawnSlimes() {
+        spawnMob(slimeAmount, Slime.class, (player, slime) -> {
+            slime.setSize(2);
+            slime.setTarget(player);
         });
     }
 

@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
+import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +18,6 @@ import java.util.Random;
 public class WeatherListener implements Listener {
 
     private BukkitTask weatherTask = null;
-    public static boolean isRaining = false; // Used to check if it's raining or not.
 
     @EventHandler
     public void onWeather(WeatherChangeEvent event) {
@@ -34,19 +34,24 @@ public class WeatherListener implements Listener {
         int weatherTrap = rand.nextInt(3);
 
         switch (weatherTrap) {
-            case 0 -> weatherTask = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    stormArrows(player);
-                }
-            }, 20, 5);
-            case 1 -> weatherTask = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    stormSnowballs(player);
-                }
-            }, 20, 5);
-            case 2 -> { weatherTask = null; }
+            case 0 -> {
+                PlayerListener.trapReveal("ARROWS");
+                weatherTask = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        stormArrows(player);
+                    }
+                }, 20, 5);
+            }
+            case 1 -> {
+                PlayerListener.trapReveal("SNOWBALLS");
+                weatherTask = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        stormSnowballs(player);
+                    }
+                }, 20, 5);
+            }
+            case 2 -> weatherTask = null;
         }
-
     }
 
     private void stormArrows(final @NotNull Player player) {

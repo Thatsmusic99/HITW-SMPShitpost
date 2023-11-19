@@ -22,6 +22,7 @@ public class PlayerListener implements Listener {
     static PotionEffect legDay = new PotionEffect(PotionEffectType.SLOW, (sec * 40), 2, false, false);
     static PotionEffect gravity = new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * 40), 1, false, false);
     static PotionEffect reveal = new PotionEffect(PotionEffectType.BLINDNESS, (sec), 0, false, false);
+    static PotionEffect darkness = new PotionEffect(PotionEffectType.DARKNESS, (sec * 30), 0, false, false);
 
     // Speedboost Trap
     public static void applySpeed() {
@@ -36,17 +37,16 @@ public class PlayerListener implements Listener {
         }
     }
 
+    public static void applyDarkness() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.addPotionEffect(darkness);
+        }
+    }
+
     public static void applySpringy() {
         for (Player p : Bukkit.getOnlinePlayers())  {
             p.removePotionEffect(PotionEffectType.JUMP);
             p.addPotionEffect(springy);
-
-            /*Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), new Runnable() {
-                @Override
-                public void run() {
-                    p.addPotionEffect(jumpBoost);
-                }
-            }, 600L);*/
         }
     }
 

@@ -51,6 +51,9 @@ public class HITWShitpost extends JavaPlugin {
             case THE_SKELETON_APPEARS -> MobTraps.spawnSkeleton();
             case AW_MAN -> MobTraps.spawnCreeper();
             case FEELING_HOT -> MobTraps.spawnBlaze();
+            case REVENGE -> MobTraps.spawnSlimes();
+            case NOT_THE_BEES -> MobTraps.spawnBees();
+            case SOLAR_ECLIPSE -> PlayerListener.applyDarkness();
         }
     }
 
