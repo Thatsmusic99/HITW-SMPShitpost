@@ -10,13 +10,16 @@ public enum Traps {
     SOLAR_ECLIPSE(15),
     SO_LONELY(10),
     CREEPY_CRAWLIES(10),
-    GUARDIANS(10),
+    EVEN_CREEPIER_CRAWLIES(10),
+    SWIMMY_FISH(10),
     PILLAGERS(10),
-    JACK_FROST(10),
-    FEELING_HOT(10),
-    REVENGE(10),
-    NOT_THE_BEES(10),
+    JACK_FROST(5),
+    FEELING_HOT(5),
+    REVENGE(8),
+    NOT_THE_BEES(5),
     THE_SKELETON_APPEARS(3),
+    ARROWS(4),
+    SNOWSTORM(4),
     AW_MAN(3);
 
     private final int weight;

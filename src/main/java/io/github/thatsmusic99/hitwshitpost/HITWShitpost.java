@@ -18,7 +18,7 @@ public class HITWShitpost extends JavaPlugin {
 
         instance = this;
 
-        getServer().getPluginManager().registerEvents(new WeatherListener(), this);
+        //getServer().getPluginManager().registerEvents(new WeatherListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         getServer().getPluginManager().registerEvents(new MobListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
@@ -28,8 +28,6 @@ public class HITWShitpost extends JavaPlugin {
 
         final BossBarManager bossBarManager = new BossBarManager();
         Bukkit.getScheduler().runTaskTimer(this, bossBarManager::tick, 20, 20);
-
-        // Bukkit.getScheduler().runTaskTimer(this, HITWShitpost::PickTrap, (20*30), (20*60)*5);
     }
 
     public static void PickTrap() {
@@ -43,7 +41,7 @@ public class HITWShitpost extends JavaPlugin {
             case SUPER_SPEED -> PlayerListener.applySpeed();
             case SO_LONELY -> MobTraps.spawnZombies();
             case CREEPY_CRAWLIES -> MobTraps.spawnSpiders();
-            case GUARDIANS -> MobTraps.spawnFish();
+            case SWIMMY_FISH -> MobTraps.spawnFish();
             case PILLAGERS -> MobTraps.spawnPillagers();
             case JACK_FROST -> MobTraps.spawnJackFrost();
             case THE_SKELETON_APPEARS -> MobTraps.spawnSkeleton();
@@ -52,6 +50,9 @@ public class HITWShitpost extends JavaPlugin {
             case REVENGE -> MobTraps.spawnSlimes();
             case NOT_THE_BEES -> MobTraps.spawnBees();
             case SOLAR_ECLIPSE -> PlayerListener.applyDarkness();
+            case EVEN_CREEPIER_CRAWLIES -> MobTraps.spawnCaveSpiders();
+            case ARROWS -> PlayerTraps.ArrowRain();
+            case SNOWSTORM -> PlayerTraps.snowballRain();
         }
     }
 

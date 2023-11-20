@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.commands;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.listeners.PlayerTraps;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
 import io.github.thatsmusic99.hitwshitpost.listeners.MobTraps;
 import io.github.thatsmusic99.hitwshitpost.listeners.PlayerListener;
@@ -47,8 +48,8 @@ public class InstantTrap implements TabExecutor {
                             PlayerListener.trapReveal(Traps.SO_LONELY.name());
                             MobTraps.spawnZombies();
                         }
-                        case "GUARDIANS" -> {
-                            PlayerListener.trapReveal(Traps.GUARDIANS.name());
+                        case "SWIMMY_FISH" -> {
+                            PlayerListener.trapReveal(Traps.SWIMMY_FISH.name());
                             MobTraps.spawnFish();
                         }
                         case "PILLAGERS" -> {
@@ -83,6 +84,21 @@ public class InstantTrap implements TabExecutor {
                             PlayerListener.trapReveal(Traps.SOLAR_ECLIPSE.name());
                             PlayerListener.applyDarkness();
                         }
+
+                        case "EVEN_CREEPIER_CRAWLIES" -> {
+                            PlayerListener.trapReveal(Traps.EVEN_CREEPIER_CRAWLIES.name());
+                            MobTraps.spawnCaveSpiders();
+                        }
+
+                        case "ARROWS" -> {
+                            PlayerListener.trapReveal(Traps.ARROWS.name());
+                            PlayerTraps.ArrowRain();
+                        }
+
+                        case "SNOWSTORM" -> {
+                            PlayerListener.trapReveal(Traps.SNOWSTORM.name());
+                            PlayerTraps.snowballRain();
+                        }
                     }
                 } else {
                     HITWShitpost.PickTrap();
@@ -106,7 +122,7 @@ public class InstantTrap implements TabExecutor {
                 "LOW_GRAVITY",
                 "SO_LONELY",
                 "CREEPY_CRAWLIES",
-                "GUARDIANS",
+                "SWIMMY_FISH",
                 "PILLAGERS",
                 "JACK_FROST",
                 "THE_SKELETON_APPEARS",
@@ -114,7 +130,10 @@ public class InstantTrap implements TabExecutor {
                 "FEELING_HOT",
                 "REVENGE",
                 "NOT_THE_BEES",
-                "SOLAR_ECLIPSE"
+                "SOLAR_ECLIPSE",
+                "EVEN_CREEPIER_CRAWLIES",
+                "ARROWS",
+                "SNOWSTORM"
         ));
         List<String> results = new ArrayList<>();
         if (args.length == 1) {

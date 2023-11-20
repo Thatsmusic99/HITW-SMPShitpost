@@ -13,6 +13,7 @@ import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class WeatherListener implements Listener {
@@ -31,7 +32,7 @@ public class WeatherListener implements Listener {
 
         // Start the raining >:)
         Random rand = new Random();
-        int weatherTrap = rand.nextInt(3);
+        int weatherTrap = rand.nextInt(2);
 
         switch (weatherTrap) {
             case 0 -> {
@@ -41,16 +42,29 @@ public class WeatherListener implements Listener {
                         stormArrows(player);
                     }
                 }, 20, 5);
+
+                Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), new Runnable() {
+                    @Override
+                    public void run() {
+                        Objects.requireNonNull(Bukkit.getWorld("smpworld")).setStorm(false);
+                    }
+                }, 600L);
             }
             case 1 -> {
-                PlayerListener.trapReveal("SNOWBALLS");
+                PlayerListener.trapReveal("SNOWSTORM");
                 weatherTask = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         stormSnowballs(player);
                     }
                 }, 20, 5);
+
+                Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), new Runnable() {
+                    @Override
+                    public void run() {
+                        Objects.requireNonNull(Bukkit.getWorld("smpworld")).setStorm(false);
+                    }
+                }, 600L);
             }
-            case 2 -> weatherTask = null;
         }
     }
 

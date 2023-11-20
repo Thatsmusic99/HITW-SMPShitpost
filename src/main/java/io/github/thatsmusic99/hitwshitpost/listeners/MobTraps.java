@@ -1,9 +1,13 @@
 package io.github.thatsmusic99.hitwshitpost.listeners;
 
+import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.block.Banner;
 import org.bukkit.entity.*;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 import java.util.Random;
@@ -18,6 +22,7 @@ public class MobTraps {
     static int blazeAmount = 2;
     static int beeAmount = 5;
     static int slimeAmount = 4;
+    static int caveSpiderAmount = 3;
 
     public static void spawnZombies() {
 
@@ -36,7 +41,12 @@ public class MobTraps {
 
     public static void spawnPillagers() {
 
-        spawnMob(pillagerAmount, Pillager.class, (player, pillager) -> pillager.setPatrolLeader(false));
+        spawnMob(pillagerAmount, Pillager.class, (player, pillager) -> {
+            pillager.setPatrolLeader(false);
+            if (pillager.getEquipment().getHelmet().getType().equals(Material.WHITE_BANNER)) {
+                pillager.getEquipment().setHelmet(new ItemStack(Material.AIR));
+            }
+        });
     }
 
     public static void spawnJackFrost() {
@@ -78,6 +88,13 @@ public class MobTraps {
             slime.setSize(2);
             slime.setTarget(player);
         });
+    }
+    public static void spawnCaveSpiders() {
+        spawnMob(caveSpiderAmount, CaveSpider.class, (player, caveSpider) -> caveSpider.setTarget(player));
+    }
+
+    public static void spawnPhantom() {
+        spawnMob(1, Phantom.class, (player, phantom) -> phantom.setTarget(player));
     }
 
     public static <T extends Entity> void spawnMob(int amount, Class<T> entityClass, BiConsumer<Player, T> postSpawn) {
