@@ -22,8 +22,6 @@ public class PlayerDeathListener implements Listener {
     public void onPlayerDeath(PlayerDeathEvent e) {
         Player player = e.getPlayer();
         EntityDamageEvent.DamageCause cause = Objects.requireNonNull(e.getPlayer().getLastDamageCause()).getCause();
-        HITWShitpost.get().getLogger().info(Objects.requireNonNull(e.getPlayer().getLastDamageCause().getCause().name()));
-
         Random rand = new Random();
 
         switch (cause) {
@@ -42,12 +40,18 @@ public class PlayerDeathListener implements Listener {
                     e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{mob}", event.getDamager().getName())));
                 } else if (player.getLastDamageCause() instanceof EntityDamageByEntityEvent event && (event.getDamager() instanceof Player)) {
                     String message = DeathMessages.PLAYER.get(rand.nextInt(DeathMessages.PLAYER.size()));
-                    e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{mob}", event.getDamager().getName())));
+                    e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{killer}", event.getDamager().getName())));
                 }
             }
             case PROJECTILE -> {
                 if (player.getLastDamageCause() instanceof EntityDamageByEntityEvent event && event.getDamager() instanceof Arrow arrow && arrow.getShooter() != null && arrow.getShooter() instanceof Entity entity) {
                     String message = DeathMessages.SHOT.get(rand.nextInt(DeathMessages.SHOT.size()));
+                    e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{mob}", entity.getName())));
+                    break;
+                }
+
+                if (player.getLastDamageCause() instanceof EntityDamageByEntityEvent event && event.getDamager() instanceof Fireball fireball && fireball.getShooter() != null && fireball.getShooter() instanceof Entity entity) {
+                    String message = DeathMessages.FIREBALL.get(rand.nextInt(DeathMessages.FIREBALL.size()));
                     e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{mob}", entity.getName())));
                     break;
                 }
@@ -87,6 +91,13 @@ public class PlayerDeathListener implements Listener {
             case DROWNING -> {
                 String message = DeathMessages.DROWN.get(rand.nextInt(DeathMessages.DROWN.size()));
                 e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName())));
+            }
+
+            case THORNS -> {
+                if (player.getLastDamageCause() instanceof EntityDamageByEntityEvent event) {
+                    String message = DeathMessages.THORNS.get(rand.nextInt(DeathMessages.THORNS.size()));
+                    e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{mob}", event.getDamager().getName())));
+                }
             }
         }
     }

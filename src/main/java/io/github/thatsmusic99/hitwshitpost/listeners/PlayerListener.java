@@ -2,6 +2,7 @@ package io.github.thatsmusic99.hitwshitpost.listeners;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
+import io.github.thatsmusic99.hitwshitpost.lists.JoinQuitMessages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -13,6 +14,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.Random;
 
 public class PlayerListener implements Listener {
     static int sec = 20;
@@ -72,18 +75,39 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void playerJoinEvent(PlayerJoinEvent e) {
         Player player = e.getPlayer();
-        jumpBoost.apply(player);
+        Random rand = new Random();
 
+        if (!player.hasPlayedBefore()) {
+            String message = JoinQuitMessages.FirstTime.get(rand.nextInt(JoinQuitMessages.FirstTime.size()));
+            e.setJoinMessage(ChatColor.translateAlternateColorCodes('&', message).replace("{player}", player.getName()));
+        } else {
+            String message = JoinQuitMessages.Return.get(rand.nextInt(JoinQuitMessages.Return.size()));
+            e.setJoinMessage(ChatColor.translateAlternateColorCodes('&', message).replace("{player}", player.getName()));
+        }
+
+        jumpBoost.apply(player);
         BossBarManager.get().addPlayer(player);
     }
     // Quit Event - making sure to remove the jump boost from the player.
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
         Player player = e.getPlayer();
+        Random rand = new Random();
+
         if (player.hasPotionEffect(PotionEffectType.JUMP)) {
             player.removePotionEffect(PotionEffectType.JUMP);
         }
+
+        if (player.isDead()) {
+            String message = JoinQuitMessages.DeathQuit.get(rand.nextInt(JoinQuitMessages.DeathQuit.size()));
+            e.setQuitMessage(ChatColor.translateAlternateColorCodes('&', message).replace("{player}", player.getName()));
+        } else {
+            String message = JoinQuitMessages.Quit.get(rand.nextInt(JoinQuitMessages.Quit.size()));
+            e.setQuitMessage(ChatColor.translateAlternateColorCodes('&', message).replace("{player}", player.getName()));
+        }
+
     }
+
     // Event for when the player dies or drinks milk, that the jump boost gets re-applied.
     @EventHandler
     public void playerDrinkEvent(EntityPotionEffectEvent e) {

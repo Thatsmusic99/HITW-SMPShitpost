@@ -20,7 +20,8 @@ public class DeathMessages {
             "&6{player} &7thought they could get across the ravine with their eyes closed.",
             "&6{player} &7stumbled over a fly and died.",
             "&7Nice! Next time do a flip, &6{player}&7!",
-            "&6{player} &7believed they could fly." // from KleinCitroentje
+            "&6{player} &7believed they could fly.", // from KleinCitroentje
+            "&7Haha &6{player} &7went brrr."
     ));
 
     public static final List<String> ENTITY_ATTACK = new ArrayList<>(Arrays.asList(
@@ -34,7 +35,8 @@ public class DeathMessages {
             "&6{player} &7was an adventurer too, until they took an arrow to the knee.", // by Thatsmusic99
             "&6{player} &7came to a fascinating conclusion, that arrows indeed hurt.",
             "&6{player} &7tried to recreate the famous scene in Matrix, but failed.",
-            "&6{player} &7knew they messed up when they shouted ''All arrows to me!''."
+            "&6{player} &7knew they messed up when they shouted ''All arrows to me!''.",
+            "&7Unlucky, &6{player}&7." // by CrisTheGuy5
     ));
 
      public static final List<String> VOID = new ArrayList<>(Arrays.asList(
@@ -69,7 +71,7 @@ public class DeathMessages {
     ));
 
     public static final List<String> EXPLOSION = new ArrayList<>(Arrays.asList(
-            "&6{player}&7''s main goal was to blow up.",
+            "&6{player}&7's main goal was to blow up.",
             "&6{player} &7thought this was Dynaball.",
             "&6{player} &7volunteered in the Arby's commercial and blew up."
     ));
@@ -91,5 +93,16 @@ public class DeathMessages {
             "&7It seems, that &6{player}&7's search for air bubbles failed.",
             "&6{player} &7was thirsty and drank too much water.",
             "&6{player} &7said to bring out the whole ocean and forgot to bring themselves out."
+    ));
+
+    public static final List<String> THORNS = new ArrayList<>(Arrays.asList(
+            "&7Haha! &6{mob} &7just poked &6{player} &7to death!",
+            "&7You've got to understand, &6{player}&7, that &6{mob} &7does not like to be touched and stop it."
+    ));
+
+    public static final List<String> FIREBALL = new ArrayList<>(Arrays.asList(
+            "&6{mob} &7shoots... And hits &6{player}&7! BOOM!",
+            "&7I'm certain that &6{player} &7just wanted to catch &6{mob}&7's fireballs and throw them back.",
+            "&7<&6{mob}&7>: Oh, &6{player} &7they gon' have to glue you back together... IN THE NETHER!"
     ));
 }
