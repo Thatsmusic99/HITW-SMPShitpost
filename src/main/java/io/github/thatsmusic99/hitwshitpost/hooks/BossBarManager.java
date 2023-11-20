@@ -18,7 +18,7 @@ public class BossBarManager {
         - As soon as player joins the boss bar shall show up for them
         - Bossbar has to show the actual time left until next trap
      */
-    private static final int TOTAL_SECONDS_COUNTDOWN = 300;
+    private static final int TOTAL_SECONDS_COUNTDOWN = 180; // (3 minutes) - before: 300 (5 minutes)
     private static BossBarManager instance;
     private final @NotNull BossBar timerDisplay;
     private int secondsLeft;
@@ -26,10 +26,8 @@ public class BossBarManager {
     public BossBarManager() {
         instance = this;
 
-
-
         timerDisplay = Bukkit.createBossBar(ChatColor.GOLD + "Next trap in: ", BarColor.GREEN, BarStyle.SOLID);
-        secondsLeft = 300;
+        secondsLeft = TOTAL_SECONDS_COUNTDOWN;
     }
 
     public static BossBarManager get() {
@@ -63,20 +61,4 @@ public class BossBarManager {
         }
         timerDisplay.setTitle(String.format(ChatColor.GOLD + "Next trap in %02d:%02d", minutes, seconds));
     }
-
-
-    public static void createTimeDisplay(int time) {
-        String message = "Next trap in: ";
-        double timeLeft = 1;
-        double seconds = Math.floor((timeLeft % 60));
-        double minutes = Math.floor(timeLeft % (60 * 60) / 60);
-
-        BossBar timeDisplay = Bukkit.createBossBar(ChatColor.GOLD + message + minutes + ":" + seconds, BarColor.WHITE, BarStyle.SOLID);
-
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            timeDisplay.addPlayer(p);
-            timeDisplay.setProgress((float) timeLeft -1);
-        }
-    }
-
 }
