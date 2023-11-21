@@ -3,10 +3,10 @@ package io.github.thatsmusic99.hitwshitpost.listeners;
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import io.github.thatsmusic99.hitwshitpost.lists.JoinQuitMessages;
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Sound;
-import org.bukkit.entity.Egg;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
@@ -69,6 +69,8 @@ public class PlayerListener implements Listener {
             String trap = trapName.replace('_', ' ');
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3[&eTRAP ALERT&3]&c Trap activated: " + "&6" +  trap));
             p.sendTitle("", ChatColor.GOLD + trap);
+
+            p.playSound(Sound.sound(Key.key("hitwsmp:sfx_trapreveal"), Sound.Source.NEUTRAL, 1.0f, 1.0f));
             //p.playSound(p, Sound.BLOCK_BELL_USE, 6.0F, 0.2F);
             //p.playSound(p, Sound.AMBIENT_CAVE, 0.4F, 0.7F);
 
