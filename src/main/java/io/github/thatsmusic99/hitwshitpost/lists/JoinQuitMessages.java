@@ -17,7 +17,7 @@ public class JoinQuitMessages {
     public static List<String> Return = new ArrayList<>(Arrays.asList(
             "&bWelcome back, &e{player}&b!",
             "&bSHH! &e{player} &bis back! Everbody act normal!",
-            "&e{player} &b is back from the dead!",
+            "&e{player} &bis back from the dead!",
             "&bPetah, the &e{player} &bis here."
     ));
 
