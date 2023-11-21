@@ -99,6 +99,11 @@ public class InstantTrap implements TabExecutor {
                             PlayerListener.trapReveal(Traps.SNOWSTORM.name());
                             PlayerTraps.snowballRain();
                         }
+
+                        default -> {
+                            sender.sendMessage(ChatColor.RED + "You may have typo'd the trap name. Try again!");
+                            return false;
+                        }
                     }
                 } else {
                     HITWShitpost.PickTrap();

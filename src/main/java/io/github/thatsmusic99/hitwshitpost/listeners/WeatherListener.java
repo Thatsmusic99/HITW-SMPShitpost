@@ -103,7 +103,7 @@ public class WeatherListener implements Listener {
             double z = rand.nextInt(10) - 5 + player.getZ();
 
             Snowball entity = (Snowball) player.getWorld().spawnEntity(new Location(player.getWorld(), x, y, z), EntityType.SNOWBALL);
-            entity.setVelocity(new Vector(rand.nextDouble(2) - 1, -1, rand.nextDouble(2) - 1));
+            entity.setVelocity(new Vector(rand.nextDouble(5) - 1, -1, rand.nextDouble(5) - 1));
         }
 
     }

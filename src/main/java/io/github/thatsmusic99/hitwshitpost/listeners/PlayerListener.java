@@ -6,10 +6,13 @@ import io.github.thatsmusic99.hitwshitpost.lists.JoinQuitMessages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
+import org.bukkit.entity.Egg;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
@@ -134,6 +137,14 @@ public class PlayerListener implements Listener {
                     }
                 }, 0L);
             }
+        }
+    }
+
+    @EventHandler
+    public void onSnowballHit(ProjectileHitEvent e) {
+        if (e.getEntity() instanceof Snowball snowball && e.getHitEntity() instanceof Player player) {
+            player.knockback(0.5, snowball.getLocation().getDirection().getX(), snowball.getLocation().getDirection().getZ());
+            player.damage(0.1);
         }
     }
 }
