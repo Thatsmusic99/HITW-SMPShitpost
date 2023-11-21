@@ -99,6 +99,16 @@ public class PlayerDeathListener implements Listener {
                     e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName()).replace("{mob}", event.getDamager().getName())));
                 }
             }
+
+            case MAGIC -> {
+                String message = DeathMessages.MAGIC.get(rand.nextInt(DeathMessages.MAGIC.size()));
+                e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName())));
+            }
+
+            case SUFFOCATION -> {
+                String message = DeathMessages.SUFFOCATION.get(rand.nextInt(DeathMessages.SUFFOCATION.size()));
+                e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName())));
+            }
         }
     }
 }
