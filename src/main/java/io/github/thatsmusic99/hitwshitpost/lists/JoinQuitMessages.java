@@ -10,7 +10,8 @@ public class JoinQuitMessages {
     public static List<String> FirstTime = new ArrayList<>(Arrays.asList(
             "&bWelcome, &e{player}&b, to the &6HITW SMP&b!",
             "&bLooks like a new human appeared! Welcome, &e{player}&b!",
-            "&bA new challenger approaches: &e{player}&b!"
+            "&bA new challenger approaches: &e{player}&b!",
+            "&bIt looks like the walls have pushed &e{player} &binto this place. Welcome!"
     ));
 
     public static List<String> Return = new ArrayList<>(Arrays.asList(
@@ -23,7 +24,8 @@ public class JoinQuitMessages {
     public static List<String> Quit = new ArrayList<>(Arrays.asList(
             "&3See you later, &e{player}&3!",
             "&e{player} &3had to go.",
-            "&3Bye, &e{player}&3! You'll be back right? ...Right?"
+            "&3Bye, &e{player}&3! You'll be back right? ...Right?",
+            "&3That's okay, &e{player}&3, take a break."
     ));
 
     public static List<String> DeathQuit = new ArrayList<>(Arrays.asList(
