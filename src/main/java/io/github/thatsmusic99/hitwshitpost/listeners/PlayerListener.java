@@ -70,7 +70,7 @@ public class PlayerListener implements Listener {
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3[&eTRAP ALERT&3]&c Trap activated: " + "&6" +  trap));
             p.sendTitle("", ChatColor.GOLD + trap);
 
-            p.playSound(Sound.sound(Key.key("hitwsmp:sfx_trapreveal"), Sound.Source.NEUTRAL, 1.0f, 1.0f));
+            p.playSound(Sound.sound(Key.key("hitwsmp:sfx_trapreveal"), Sound.Source.NEUTRAL, 5.0f, 1.0f), Sound.Emitter.self());
             //p.playSound(p, Sound.BLOCK_BELL_USE, 6.0F, 0.2F);
             //p.playSound(p, Sound.AMBIENT_CAVE, 0.4F, 0.7F);
 
@@ -86,9 +86,15 @@ public class PlayerListener implements Listener {
         if (!player.hasPlayedBefore()) {
             String message = JoinQuitMessages.FirstTime.get(rand.nextInt(JoinQuitMessages.FirstTime.size()));
             e.setJoinMessage(ChatColor.translateAlternateColorCodes('&', message).replace("{player}", player.getName()));
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                p.playSound(Sound.sound(Key.key("hitwsmp:sfx_welcome"), Sound.Source.NEUTRAL, 5.0f, 1.0f), Sound.Emitter.self());
+            }
         } else {
             String message = JoinQuitMessages.Return.get(rand.nextInt(JoinQuitMessages.Return.size()));
             e.setJoinMessage(ChatColor.translateAlternateColorCodes('&', message).replace("{player}", player.getName()));
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                p.playSound(Sound.sound(Key.key("hitwsmp:sfx_join"), Sound.Source.NEUTRAL, 5.0f, 1.0f), Sound.Emitter.self());
+            }
         }
 
         jumpBoost.apply(player);
@@ -102,6 +108,10 @@ public class PlayerListener implements Listener {
 
         if (player.hasPotionEffect(PotionEffectType.JUMP)) {
             player.removePotionEffect(PotionEffectType.JUMP);
+        }
+
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.playSound(Sound.sound(Key.key("hitwsmp:sfx_leave"), Sound.Source.NEUTRAL, 5.0f, 1.0f), Sound.Emitter.self());
         }
 
         if (player.isDead()) {

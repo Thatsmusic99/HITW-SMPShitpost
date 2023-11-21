@@ -1,9 +1,10 @@
 package io.github.thatsmusic99.hitwshitpost.hooks;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Sound;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
@@ -18,7 +19,7 @@ public class BossBarManager {
         - As soon as player joins the boss bar shall show up for them
         - Bossbar has to show the actual time left until next trap
      */
-    private static final int TOTAL_SECONDS_COUNTDOWN = 180; // (3 minutes) - before: 300 (5 minutes)
+    private static final int TOTAL_SECONDS_COUNTDOWN = 180; // 180 (3 minutes) - before: 300 (5 minutes)
     private static BossBarManager instance;
     private final @NotNull BossBar timerDisplay;
     private int secondsLeft;
@@ -51,9 +52,9 @@ public class BossBarManager {
         int minutes = (secondsLeft % (60 * 60) / 60);
         timerDisplay.setProgress(secondsLeft / (double) TOTAL_SECONDS_COUNTDOWN);
         if (minutes < 1) {
-            if (seconds > 0 && seconds <= 3) {
-                for (Player p : Bukkit.getOnlinePlayers()) {
-                    p.playSound(p, Sound.UI_BUTTON_CLICK, 3.0F, 1.7F);
+            if (seconds == 4) {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    player.playSound(Sound.sound(Key.key("hitwsmp:sfx_countdown"), Sound.Source.NEUTRAL, 9.0f, 1.0f), Sound.Emitter.self());
                 }
             }
             timerDisplay.setTitle(String.format(ChatColor.GOLD + "Next trap in " + ChatColor.RED + "%02d:%02d", minutes, seconds));
