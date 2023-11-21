@@ -16,4 +16,8 @@ public class MobListener implements Listener {
             }
         }
     }
+    // This event shall act as a forbidden MobGriefing for the Creeper
+    public void creeperExplosion(EntityExplodeEvent e) {
+        e.blockList().clear(); 
+    }
 }
