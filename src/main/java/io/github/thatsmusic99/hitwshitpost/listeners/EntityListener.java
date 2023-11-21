@@ -5,8 +5,11 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 
-public class MobListener implements Listener {
+public class EntityListener implements Listener {
     @EventHandler
     public void mobDeath(EntityDeathEvent e) {
         if (e.getEntity() instanceof Blaze blaze) {
@@ -20,6 +23,13 @@ public class MobListener implements Listener {
     public void creeperExplosion(EntityExplodeEvent e) {
         if (e.getEntity() instanceof Creeper) {
             e.blockList().clear();
-        };
+        }
+    }
+
+    // Prevent item frames from being destroyed by creepers
+    public void itemFrameExplosion(HangingBreakByEntityEvent e) {
+        if (e.getEntity() instanceof ItemFrame && e.getCause() == HangingBreakEvent.RemoveCause.EXPLOSION) {
+            e.setCancelled(true);
+        }
     }
 }

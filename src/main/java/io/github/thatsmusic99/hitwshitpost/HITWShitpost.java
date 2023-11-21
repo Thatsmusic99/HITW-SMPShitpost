@@ -20,7 +20,7 @@ public class HITWShitpost extends JavaPlugin {
 
         //getServer().getPluginManager().registerEvents(new WeatherListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
-        getServer().getPluginManager().registerEvents(new MobListener(), this);
+        getServer().getPluginManager().registerEvents(new EntityListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
 
         Objects.requireNonNull(getCommand("instanttrap")).setExecutor(new InstantTrap());
