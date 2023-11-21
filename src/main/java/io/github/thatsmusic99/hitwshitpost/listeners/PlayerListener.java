@@ -69,8 +69,9 @@ public class PlayerListener implements Listener {
             String trap = trapName.replace('_', ' ');
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3[&eTRAP ALERT&3]&c Trap activated: " + "&6" +  trap));
             p.sendTitle("", ChatColor.GOLD + trap);
-            p.playSound(p, Sound.BLOCK_BELL_USE, 6.0F, 0.2F);
-            p.playSound(p, Sound.AMBIENT_CAVE, 0.4F, 0.7F);
+            //p.playSound(p, Sound.BLOCK_BELL_USE, 6.0F, 0.2F);
+            //p.playSound(p, Sound.AMBIENT_CAVE, 0.4F, 0.7F);
+
         }
     }
 
