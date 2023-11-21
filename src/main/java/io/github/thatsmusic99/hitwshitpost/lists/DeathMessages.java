@@ -105,4 +105,15 @@ public class DeathMessages {
             "&7I'm certain that &6{player} &7just wanted to catch &6{mob}&7's fireballs and throw them back.",
             "&7<&6{mob}&7>: Oh, &6{player} &7they gon' have to glue you back together... IN THE NETHER!"
     ));
+
+    public static final List<String> MAGIC = new ArrayList<>(Arrays.asList(
+            "&7Skiddadle, Skiddoodle, &6{player} &7is now a noodle!",
+            "&6{player} &7has been magically erased from existence.",
+            "&7POOF! &6{player} &7is now gone!"
+    ));
+
+    public static final List<String> SUFFOCATION = new ArrayList<>(Arrays.asList(
+            "&6{player} &7managed to bury themselves and forgot to breathe.",
+            "&7And so it seems, that &6{player} &7has dug it's own grave. ...Literally."
+    ));
 }
