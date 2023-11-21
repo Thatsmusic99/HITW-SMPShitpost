@@ -2,6 +2,7 @@ package io.github.thatsmusic99.hitwshitpost.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Blaze;
+import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -18,6 +19,8 @@ public class MobListener implements Listener {
     }
     // This event shall act as a forbidden MobGriefing for the Creeper
     public void creeperExplosion(EntityExplodeEvent e) {
-        e.blockList().clear(); 
+        if (e.getEntity() instanceof Creeper) {
+            e.blockList().clear();
+        };
     }
 }
