@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
 
@@ -21,11 +22,14 @@ public class EntityListener implements Listener {
             }
         }
     }
-    // This event shall act as a forbidden MobGriefing for the Creeper
+    // This event shall act as a forbidden MobGriefing for mobs
     @EventHandler
     public void creeperExplosion(EntityExplodeEvent e) {
         if (e.getEntity() instanceof Creeper) {
-            HITWShitpost.get().getLogger().info("BOOM!");
+            e.blockList().clear();
+        }
+        // Make chasts not be able to destroy blocks with their explosives.
+        if (e.getEntity() instanceof Fireball) {
             e.blockList().clear();
         }
     }
@@ -35,6 +39,20 @@ public class EntityListener implements Listener {
     public void itemFrameExplosion(HangingBreakByEntityEvent e) {
         if (e.getEntity() instanceof ItemFrame && e.getCause() == HangingBreakEvent.RemoveCause.EXPLOSION) {
             e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onSnowballHit(ProjectileHitEvent e) {
+        if (e.getEntity() instanceof Snowball snowball && e.getHitEntity() instanceof Player player) {
+            player.knockback(0.5, snowball.getLocation().getDirection().getX(), snowball.getLocation().getDirection().getZ());
+            player.damage(0.1);
+        }
+        // Prevent fireballs from making fire.
+        if (e.getEntity() instanceof Fireball fireball) {
+            if (fireball.getShooter() instanceof Blaze) {
+                fireball.setVisualFire(false);
+            }
         }
     }
 }

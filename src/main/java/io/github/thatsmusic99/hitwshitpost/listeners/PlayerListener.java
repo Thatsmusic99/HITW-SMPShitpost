@@ -152,12 +152,4 @@ public class PlayerListener implements Listener {
             }
         }
     }
-
-    @EventHandler
-    public void onSnowballHit(ProjectileHitEvent e) {
-        if (e.getEntity() instanceof Snowball snowball && e.getHitEntity() instanceof Player player) {
-            player.knockback(0.5, snowball.getLocation().getDirection().getX(), snowball.getLocation().getDirection().getZ());
-            player.damage(0.1);
-        }
-    }
 }
