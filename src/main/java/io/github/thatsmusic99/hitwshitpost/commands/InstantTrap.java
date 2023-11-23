@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.commands;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.config.Config;
 import io.github.thatsmusic99.hitwshitpost.traps.PlayerTraps;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
 import io.github.thatsmusic99.hitwshitpost.traps.MobTraps;
@@ -14,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.*;
 
 public class InstantTrap implements TabExecutor {
@@ -100,6 +102,16 @@ public class InstantTrap implements TabExecutor {
                             PlayerTraps.snowballRain();
                         }
 
+                        case "reload" -> {
+                            try {
+                                Config.reload();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            sender.sendMessage(ChatColor.GREEN + "Config reloaded!");
+                            return true;
+                        }
+
                         default -> {
                             sender.sendMessage(ChatColor.RED + "You may have typo'd the trap name. Try again!");
                             return false;
@@ -138,7 +150,8 @@ public class InstantTrap implements TabExecutor {
                 "SOLAR_ECLIPSE",
                 "EVEN_CREEPIER_CRAWLIES",
                 "ARROWS",
-                "SNOWSTORM"
+                "SNOWSTORM",
+                "reload"
         ));
         List<String> results = new ArrayList<>();
         if (args.length == 1) {

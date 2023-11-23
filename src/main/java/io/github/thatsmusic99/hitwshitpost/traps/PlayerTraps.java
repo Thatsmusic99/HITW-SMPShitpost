@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.traps;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.config.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -14,7 +15,6 @@ import java.util.Random;
 
 public class PlayerTraps {
     private static BukkitTask rainTrap = null;
-    final static long length = 600L;
 
     public static void ArrowRain() {
         rainTrap = Bukkit.getScheduler().runTaskTimer(HITWShitpost.get(), () -> {
@@ -29,7 +29,7 @@ public class PlayerTraps {
                 rainTrap.cancel();
                 rainTrap = null;
             }
-        }, length);
+        }, (long) Config.config.getLong("traps.rainlength.arrows"));
     }
 
     public static void snowballRain() {
@@ -45,7 +45,7 @@ public class PlayerTraps {
                 rainTrap.cancel();
                 rainTrap = null;
             }
-        }, length);
+        }, (long) Config.config.getInt("traps.rainlength.snowstorm"));
     }
 
     // Rain part

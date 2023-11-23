@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.hooks;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.config.Config;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
@@ -21,7 +22,7 @@ public class BossBarManager {
         - As soon as player joins the boss bar shall show up for them
         - Bossbar has to show the actual time left until next trap
      */
-    private static final int TOTAL_SECONDS_COUNTDOWN = 180; // 180 (3 minutes) - before: 300 (5 minutes)
+    //private static int TotalSecondsCountdown = Config.config.getInt("timer.interval");
     private static BossBarManager instance;
     private final @NotNull BossBar timerDisplay;
     private int secondsLeft;
@@ -30,7 +31,7 @@ public class BossBarManager {
         instance = this;
 
         timerDisplay = Bukkit.createBossBar(ChatColor.GOLD + "Next trap in: ", BarColor.GREEN, BarStyle.SOLID);
-        secondsLeft = TOTAL_SECONDS_COUNTDOWN;
+        secondsLeft = Config.config.getInt("timer.interval");
     }
 
     public static BossBarManager get() {
@@ -45,14 +46,14 @@ public class BossBarManager {
         secondsLeft--;
 
         // If the countdown has finished, then pick a trap
-        if (secondsLeft == 0) {
+        if (secondsLeft <= 0) {
             HITWShitpost.PickTrap();
-            secondsLeft = TOTAL_SECONDS_COUNTDOWN;
+            secondsLeft = Config.config.getInt("timer.interval");
         }
 
         int seconds = (secondsLeft % 60);
         int minutes = (secondsLeft % (60 * 60) / 60);
-        timerDisplay.setProgress(secondsLeft / (double) TOTAL_SECONDS_COUNTDOWN);
+        timerDisplay.setProgress(Math.min(secondsLeft / (double) Config.config.getInt("timer.interval"), 1));
         if (minutes < 1) {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 if (seconds == 4 && player.getResourcePackStatus() == PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED) {

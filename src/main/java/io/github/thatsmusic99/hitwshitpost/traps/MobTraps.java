@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.traps;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.config.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,34 +15,25 @@ import java.util.Random;
 import java.util.function.BiConsumer;
 
 public class MobTraps {
-    static int zombieAmount = 3;
-    static int spiderAmount = 2;
-    static int fishAmount = 3;
-    static int pillagerAmount = 4;
-    static int jackFrostAmount = 4;
-    static int blazeAmount = 2;
-    static int beeAmount = 5;
-    static int slimeAmount = 4;
-    static int caveSpiderAmount = 3;
 
     public static void spawnZombies() {
 
-        spawnMob(zombieAmount, Zombie.class, (player, zombie) -> {});
+        spawnMob(Config.config.getInt("traps.spawn.solonely"), Zombie.class, (player, zombie) -> {});
     }
 
     public static void spawnSpiders() {
 
-        spawnMob(spiderAmount, Spider.class, (player, spider) -> spider.setTarget(player));
+        spawnMob(Config.config.getInt("traps.spawn.creepycrawlies"), Spider.class, (player, spider) -> spider.setTarget(player));
     }
 
     public static void spawnFish() {
 
-        spawnMob(fishAmount, Guardian.class, (player, guardian) -> {});
+        spawnMob(Config.config.getInt("traps.spawn.swimmyfish"), Guardian.class, (player, guardian) -> {});
     }
 
     public static void spawnPillagers() {
 
-        spawnMob(pillagerAmount, Pillager.class, (player, pillager) -> {
+        spawnMob(Config.config.getInt("traps.spawn.pillagers"), Pillager.class, (player, pillager) -> {
             pillager.setPatrolLeader(false);
             if (pillager.getEquipment().getHelmet().getType().equals(Material.WHITE_BANNER)) {
                 pillager.getEquipment().setHelmet(new ItemStack(Material.AIR));
@@ -51,12 +43,12 @@ public class MobTraps {
 
     public static void spawnJackFrost() {
 
-        spawnMob(jackFrostAmount, Snowman.class, (player, snowman) -> {});
+        spawnMob(Config.config.getInt("traps.spawn.jackfrost"), Snowman.class, (player, snowman) -> {});
     }
 
     public static void spawnCreeper() {
 
-        spawnMob(1, Creeper.class, (player, creeper) -> {
+        spawnMob(Config.config.getInt("traps.spawn.awman"), Creeper.class, (player, creeper) -> {
             creeper.setTarget(player);
             Objects.requireNonNull(creeper.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.4);
             Objects.requireNonNull(creeper.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(1);
@@ -66,12 +58,12 @@ public class MobTraps {
 
     public static void spawnBlaze() {
 
-        spawnMob(blazeAmount, Blaze.class, (player, blaze) -> {});
+        spawnMob(Config.config.getInt("traps.spawn.feelinghot"), Blaze.class, (player, blaze) -> {});
     }
 
     public static void spawnSkeleton() {
 
-        spawnMob(1, Skeleton.class, (player, skeleton) -> {
+        spawnMob(Config.config.getInt("traps.spawn.theskeletonappears"), Skeleton.class, (player, skeleton) -> {
             Objects.requireNonNull(skeleton.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(10);
             Objects.requireNonNull(skeleton.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(2);
             skeleton.setHealth(10);
@@ -80,17 +72,17 @@ public class MobTraps {
     }
 
     public static void spawnBees() {
-        spawnMob(beeAmount, Bee.class, (player, bee) -> {});
+        spawnMob(Config.config.getInt("traps.spawn.notthebees"), Bee.class, (player, bee) -> {});
     }
 
     public static void spawnSlimes() {
-        spawnMob(slimeAmount, Slime.class, (player, slime) -> {
+        spawnMob(Config.config.getInt("traps.spawn.revenge"), Slime.class, (player, slime) -> {
             slime.setSize(2);
             slime.setTarget(player);
         });
     }
     public static void spawnCaveSpiders() {
-        spawnMob(caveSpiderAmount, CaveSpider.class, (player, caveSpider) -> caveSpider.setTarget(player));
+        spawnMob(Config.config.getInt("traps.spawn.evencreepiercrawlies"), CaveSpider.class, (player, caveSpider) -> caveSpider.setTarget(player));
     }
 
     public static void spawnPhantom() {

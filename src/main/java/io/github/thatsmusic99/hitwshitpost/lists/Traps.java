@@ -1,26 +1,28 @@
 package io.github.thatsmusic99.hitwshitpost.lists;
 
+import io.github.thatsmusic99.hitwshitpost.config.Config;
+
 import java.util.Random;
 
 public enum Traps {
-    LEG_DAY(20),
-    SUPER_SPEED(20),
-    SPRINGY_SHOES(20),
-    LOW_GRAVITY(20),
-    SOLAR_ECLIPSE(15),
-    SO_LONELY(10),
-    CREEPY_CRAWLIES(10),
-    EVEN_CREEPIER_CRAWLIES(10),
-    SWIMMY_FISH(10),
-    PILLAGERS(10),
-    JACK_FROST(5),
-    FEELING_HOT(5),
-    REVENGE(8),
-    NOT_THE_BEES(5),
-    THE_SKELETON_APPEARS(3),
-    ARROWS(4),
-    SNOWSTORM(4),
-    AW_MAN(3);
+    LEG_DAY(Config.config.getInt("traps.chances.legday")),
+    SUPER_SPEED(Config.config.getInt("traps.chances.superspeed")),
+    SPRINGY_SHOES(Config.config.getInt("traps.chances.springyshoes")),
+    LOW_GRAVITY(Config.config.getInt("traps.chances.lowgravity")),
+    SOLAR_ECLIPSE(Config.config.getInt("traps.chances.solareclipse")),
+    SO_LONELY(Config.config.getInt("traps.chances.solonely")),
+    CREEPY_CRAWLIES(Config.config.getInt("traps.chances.creepycrawlies")),
+    EVEN_CREEPIER_CRAWLIES(Config.config.getInt("traps.chances.evencreepiercrawlies")),
+    SWIMMY_FISH(Config.config.getInt("traps.chances.swimmyfish")),
+    PILLAGERS(Config.config.getInt("traps.chances.pillagers")),
+    JACK_FROST(Config.config.getInt("traps.chances.jackfrost")),
+    FEELING_HOT(Config.config.getInt("traps.chances.feelinghot")),
+    REVENGE(Config.config.getInt("traps.chances.revenge")),
+    NOT_THE_BEES(Config.config.getInt("traps.chances.notthebees")),
+    THE_SKELETON_APPEARS(Config.config.getInt("traps.chances.theskeletonappears")),
+    ARROWS(Config.config.getInt("traps.chances.arrows")),
+    SNOWSTORM(Config.config.getInt("traps.chances.snowstorm")),
+    AW_MAN(Config.config.getInt("traps.chances.awman"));
 
     private final int weight;
 

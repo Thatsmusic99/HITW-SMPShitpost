@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost;
 
 import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
+import io.github.thatsmusic99.hitwshitpost.config.Config;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import io.github.thatsmusic99.hitwshitpost.listeners.*;
@@ -9,6 +10,7 @@ import io.github.thatsmusic99.hitwshitpost.traps.PlayerTraps;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class HITWShitpost extends JavaPlugin {
@@ -20,16 +22,27 @@ public class HITWShitpost extends JavaPlugin {
 
         instance = this;
 
+        // Events
         //getServer().getPluginManager().registerEvents(new WeatherListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         getServer().getPluginManager().registerEvents(new EntityListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
 
-        Objects.requireNonNull(getCommand("instanttrap")).setExecutor(new InstantTrap());
-        Objects.requireNonNull(getCommand("instanttrap")).setTabCompleter(new InstantTrap());
+        // Commands
+        Objects.requireNonNull(getCommand("trap")).setExecutor(new InstantTrap());
+        Objects.requireNonNull(getCommand("trap")).setTabCompleter(new InstantTrap());
 
+        // BossBar
         final BossBarManager bossBarManager = new BossBarManager();
         Bukkit.getScheduler().runTaskTimer(this, bossBarManager::tick, 20, 20);
+
+        // Config
+        try {
+            Config.setDefaults();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static void PickTrap() {

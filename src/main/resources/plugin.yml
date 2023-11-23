@@ -8,5 +8,5 @@ permissions:
     default: op
 
 commands:
-  instanttrap:
+  trap:
     description: Instantly activate a random trap.

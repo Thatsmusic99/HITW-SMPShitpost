@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.listeners;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.config.Config;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import io.github.thatsmusic99.hitwshitpost.lists.JoinQuitMessages;
 import net.kyori.adventure.key.Key;
@@ -22,43 +23,45 @@ import java.util.Random;
 public class PlayerListener implements Listener {
     static int sec = 20;
 
-    static PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, PotionEffect.INFINITE_DURATION, 1, false, false);
-    static PotionEffect springy = new PotionEffect(PotionEffectType.JUMP, (sec * 30), 3, false, false);
-    static PotionEffect speedBoost = new PotionEffect(PotionEffectType.SPEED, (sec * 30), 4, false, false);
-    static PotionEffect legDay = new PotionEffect(PotionEffectType.SLOW, (sec * 40), 2, false, false);
-    static PotionEffect gravity = new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * 40), 1, false, false);
-    static PotionEffect reveal = new PotionEffect(PotionEffectType.BLINDNESS, (sec), 0, false, false);
-    static PotionEffect darkness = new PotionEffect(PotionEffectType.DARKNESS, (sec * 30), 0, false, false);
+    static final PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, PotionEffect.INFINITE_DURATION, 1, false, false);
+    static final PotionEffect reveal = new PotionEffect(PotionEffectType.BLINDNESS, (sec), 0, false, false);
+
+    // Potion Effects for Traps
+    //static PotionEffect springy = new PotionEffect(PotionEffectType.JUMP, (sec * Config.config.getInt("traps.length.springyshoes")), 3, false, false);
+    //static PotionEffect speedBoost = new PotionEffect(PotionEffectType.SPEED, (sec * Config.config.getInt("traps.length.superspeed")), 4, false, false);
+    //static PotionEffect legDay = new PotionEffect(PotionEffectType.SLOW, (sec * Config.config.getInt("traps.length.legday")), 2, false, false);
+    //static PotionEffect gravity = new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * Config.config.getInt("traps.length.lowgravity")), 1, false, false);
+    //static PotionEffect darkness = new PotionEffect(PotionEffectType.DARKNESS, (sec * Config.config.getInt("traps.length.solareclipse")), 0, false, false);
 
     // Speedboost Trap
     public static void applySpeed() {
         for (Player p : Bukkit.getOnlinePlayers())  {
-            p.addPotionEffect(speedBoost);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (sec * Config.config.getInt("traps.length.superspeed")), 4, false, false));
         }
     }
 
     public static void applySlow() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.addPotionEffect(legDay);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, (sec * Config.config.getInt("traps.length.legday")), 2, false, false));
         }
     }
 
     public static void applyDarkness() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.addPotionEffect(darkness);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, (sec * Config.config.getInt("traps.length.solareclipse")), 0, false, false));
         }
     }
 
     public static void applySpringy() {
         for (Player p : Bukkit.getOnlinePlayers())  {
             p.removePotionEffect(PotionEffectType.JUMP);
-            p.addPotionEffect(springy);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, (sec * Config.config.getInt("traps.length.springyshoes")), 3, false, false));
         }
     }
 
     public static void applyGravity() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.addPotionEffect(gravity);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * Config.config.getInt("traps.length.lowgravity")), 1, false, false));
         }
     }
 
