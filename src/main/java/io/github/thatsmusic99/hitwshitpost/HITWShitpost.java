@@ -4,6 +4,8 @@ import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import io.github.thatsmusic99.hitwshitpost.listeners.*;
+import io.github.thatsmusic99.hitwshitpost.traps.MobTraps;
+import io.github.thatsmusic99.hitwshitpost.traps.PlayerTraps;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

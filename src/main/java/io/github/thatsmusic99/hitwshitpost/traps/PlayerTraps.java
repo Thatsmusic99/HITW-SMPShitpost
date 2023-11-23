@@ -1,4 +1,4 @@
-package io.github.thatsmusic99.hitwshitpost.listeners;
+package io.github.thatsmusic99.hitwshitpost.traps;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import org.bukkit.Bukkit;

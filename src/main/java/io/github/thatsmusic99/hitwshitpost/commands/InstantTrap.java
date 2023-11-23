@@ -1,9 +1,9 @@
 package io.github.thatsmusic99.hitwshitpost.commands;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
-import io.github.thatsmusic99.hitwshitpost.listeners.PlayerTraps;
+import io.github.thatsmusic99.hitwshitpost.traps.PlayerTraps;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
-import io.github.thatsmusic99.hitwshitpost.listeners.MobTraps;
+import io.github.thatsmusic99.hitwshitpost.traps.MobTraps;
 import io.github.thatsmusic99.hitwshitpost.listeners.PlayerListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
