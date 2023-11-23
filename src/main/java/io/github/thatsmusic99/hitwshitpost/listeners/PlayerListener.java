@@ -8,13 +8,12 @@ import net.kyori.adventure.sound.Sound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -22,6 +21,7 @@ import java.util.Random;
 
 public class PlayerListener implements Listener {
     static int sec = 20;
+
     static PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, PotionEffect.INFINITE_DURATION, 1, false, false);
     static PotionEffect springy = new PotionEffect(PotionEffectType.JUMP, (sec * 30), 3, false, false);
     static PotionEffect speedBoost = new PotionEffect(PotionEffectType.SPEED, (sec * 30), 4, false, false);
@@ -70,9 +70,13 @@ public class PlayerListener implements Listener {
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3[&eTRAP ALERT&3]&c Trap activated: " + "&6" +  trap));
             p.sendTitle("", ChatColor.GOLD + trap);
 
-            p.playSound(Sound.sound(Key.key("hitwsmp:sfx_trapreveal"), Sound.Source.NEUTRAL, 5.0f, 1.0f), Sound.Emitter.self());
-            //p.playSound(p, Sound.BLOCK_BELL_USE, 6.0F, 0.2F);
-            //p.playSound(p, Sound.AMBIENT_CAVE, 0.4F, 0.7F);
+            if (p.getResourcePackStatus() == PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED) {
+                p.playSound(Sound.sound(Key.key("hitwsmp:sfx_trapreveal"), Sound.Source.NEUTRAL, 5.0f, 1.0f), Sound.Emitter.self());
+            } else {
+                p.playSound(Sound.sound(org.bukkit.Sound.BLOCK_BELL_USE, Sound.Source.NEUTRAL, 6.0F, 0.2F), Sound.Emitter.self());
+                p.playSound(Sound.sound(org.bukkit.Sound.AMBIENT_CAVE, Sound.Source.NEUTRAL, 0.4F, 0.7F), Sound.Emitter.self());
+            }
+
 
         }
     }

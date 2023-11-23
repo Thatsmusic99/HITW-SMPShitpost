@@ -9,7 +9,9 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class BossBarManager {
     /*
@@ -52,11 +54,15 @@ public class BossBarManager {
         int minutes = (secondsLeft % (60 * 60) / 60);
         timerDisplay.setProgress(secondsLeft / (double) TOTAL_SECONDS_COUNTDOWN);
         if (minutes < 1) {
-            if (seconds == 4) {
-                for (Player player : Bukkit.getOnlinePlayers()) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                if (seconds == 4 && player.getResourcePackStatus() == PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED) {
                     player.playSound(Sound.sound(Key.key("hitwsmp:sfx_countdown"), Sound.Source.NEUTRAL, 9.0f, 1.0f), Sound.Emitter.self());
+
+                } else if (seconds >= 1 && seconds <=3 && player.getResourcePackStatus() != PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED) {
+                    player.playSound(Sound.sound(org.bukkit.Sound.UI_BUTTON_CLICK, Sound.Source.NEUTRAL, 2.0f, 2.0f), Sound.Emitter.self());
                 }
             }
+
             timerDisplay.setTitle(String.format(ChatColor.GOLD + "Next trap in " + ChatColor.RED + "%02d:%02d", minutes, seconds));
             return;
         }
