@@ -26,6 +26,7 @@ public class PlayerDeathListener implements Listener {
         Player player = e.getPlayer();
         EntityDamageEvent.DamageCause cause = Objects.requireNonNull(e.getPlayer().getLastDamageCause()).getCause();
         Random rand = new Random();
+        HITWShitpost.get().getLogger().info(e.getPlayer().getLastDamageCause().getCause().name());
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.playSound(Sound.sound(Key.key("hitwsmp:sfx_death"), Sound.Source.NEUTRAL, 5.0f, 1.0f), Sound.Emitter.self());
@@ -79,10 +80,11 @@ public class PlayerDeathListener implements Listener {
                 String message = DeathMessages.POISON.get(rand.nextInt(DeathMessages.POISON.size()));
                 e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName())));
             }
-            case FIRE -> {
+            case FIRE, FIRE_TICK -> {
                 String message = DeathMessages.FIRE.get(rand.nextInt(DeathMessages.FIRE.size()));
                 e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName())));
             }
+
             case BLOCK_EXPLOSION -> {
                 String message = DeathMessages.EXPLOSION.get(rand.nextInt(DeathMessages.EXPLOSION.size()));
                 e.setDeathMessage(ChatColor.translateAlternateColorCodes('&', message.replace("{player}", player.getName())));

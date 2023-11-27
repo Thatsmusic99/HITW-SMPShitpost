@@ -2,15 +2,19 @@ package io.github.thatsmusic99.hitwshitpost.listeners;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.block.data.type.Fire;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.block.BlockIgniteEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class EntityListener implements Listener {
     @EventHandler
@@ -48,11 +52,19 @@ public class EntityListener implements Listener {
             player.knockback(0.5, snowball.getLocation().getDirection().getX(), snowball.getLocation().getDirection().getZ());
             player.damage(0.1);
         }
-        // Prevent fireballs from making fire.
-        if (e.getEntity() instanceof Fireball fireball) {
-            if (fireball.getShooter() instanceof Blaze) {
-                fireball.setVisualFire(false);
-            }
+    }
+
+    @EventHandler
+    public void fireCreation(BlockIgniteEvent e) {
+        if (e.getCause() == BlockIgniteEvent.IgniteCause.FIREBALL) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void parrotInteract(PlayerInteractEvent e) {
+        if (e.getInteractionPoint() instanceof Parrot) {
+
         }
     }
 }

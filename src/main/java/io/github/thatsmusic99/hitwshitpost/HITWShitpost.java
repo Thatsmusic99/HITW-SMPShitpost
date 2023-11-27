@@ -68,6 +68,7 @@ public class HITWShitpost extends JavaPlugin {
             case EVEN_CREEPIER_CRAWLIES -> MobTraps.spawnCaveSpiders();
             case ARROWS -> PlayerTraps.ArrowRain();
             case SNOWSTORM -> PlayerTraps.snowballRain();
+            case EXHAUSTED_ARMS -> PlayerListener.applyMineFatigue();
         }
     }
 

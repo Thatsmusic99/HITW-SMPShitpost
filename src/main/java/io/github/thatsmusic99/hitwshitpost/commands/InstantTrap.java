@@ -102,6 +102,11 @@ public class InstantTrap implements TabExecutor {
                             PlayerTraps.snowballRain();
                         }
 
+                        case "EXHAUSTED_ARMS" -> {
+                            PlayerListener.trapReveal(Traps.EXHAUSTED_ARMS.name());
+                            PlayerListener.applyMineFatigue();
+                        }
+
                         case "reload" -> {
                             try {
                                 Config.reload();
@@ -148,6 +153,7 @@ public class InstantTrap implements TabExecutor {
                 "REVENGE",
                 "NOT_THE_BEES",
                 "SOLAR_ECLIPSE",
+                "EXHAUSTED_ARMS",
                 "EVEN_CREEPIER_CRAWLIES",
                 "ARROWS",
                 "SNOWSTORM",

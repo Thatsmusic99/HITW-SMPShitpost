@@ -65,6 +65,12 @@ public class PlayerListener implements Listener {
         }
     }
 
+    public static void applyMineFatigue() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, (sec * Config.config.getInt("traps.length.exhaustedarms")), 1, false, false));
+        }
+    }
+
     public static void trapReveal(String trapName) {
         for (Player p: Bukkit.getOnlinePlayers()) {
             p.addPotionEffect(reveal);
