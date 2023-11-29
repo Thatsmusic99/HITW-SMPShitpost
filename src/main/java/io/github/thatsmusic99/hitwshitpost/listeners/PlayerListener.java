@@ -71,6 +71,12 @@ public class PlayerListener implements Listener {
         }
     }
 
+    public static void applyHaste() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, (sec * Config.config.getInt("traps.length.excavator")), 1, false, false));
+        }
+    }
+
     public static void trapReveal(String trapName) {
         for (Player p: Bukkit.getOnlinePlayers()) {
             p.addPotionEffect(reveal);
@@ -85,7 +91,6 @@ public class PlayerListener implements Listener {
                 p.playSound(Sound.sound(org.bukkit.Sound.BLOCK_BELL_USE, Sound.Source.NEUTRAL, 6.0F, 0.2F), Sound.Emitter.self());
                 p.playSound(Sound.sound(org.bukkit.Sound.AMBIENT_CAVE, Sound.Source.NEUTRAL, 0.4F, 0.7F), Sound.Emitter.self());
             }
-
 
         }
     }

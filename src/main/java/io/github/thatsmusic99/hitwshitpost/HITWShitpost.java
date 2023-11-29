@@ -69,6 +69,7 @@ public class HITWShitpost extends JavaPlugin {
             case ARROWS -> PlayerTraps.ArrowRain();
             case SNOWSTORM -> PlayerTraps.snowballRain();
             case EXHAUSTED_ARMS -> PlayerListener.applyMineFatigue();
+            case EXCAVATOR -> PlayerListener.applyHaste();
         }
     }
 

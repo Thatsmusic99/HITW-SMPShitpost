@@ -11,6 +11,7 @@ public enum Traps {
     LOW_GRAVITY(Config.config.getInt("traps.chances.lowgravity")),
     SOLAR_ECLIPSE(Config.config.getInt("traps.chances.solareclipse")),
     EXHAUSTED_ARMS(Config.config.getInt("traps.chances.exhaustedarms")),
+    EXCAVATOR(Config.config.getInt("traps.chance.excavator")),
     SO_LONELY(Config.config.getInt("traps.chances.solonely")),
     CREEPY_CRAWLIES(Config.config.getInt("traps.chances.creepycrawlies")),
     EVEN_CREEPIER_CRAWLIES(Config.config.getInt("traps.chances.evencreepiercrawlies")),

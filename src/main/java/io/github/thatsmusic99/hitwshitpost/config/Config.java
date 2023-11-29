@@ -35,6 +35,7 @@ public class Config {
         config.addDefault("traps.chances.theskeletonappears", 3);
         config.addDefault("traps.chances.awman", 3);
         config.addDefault("traps.chances.exhaustedarms", 0);
+        config.addDefault("traps.chances.excavator", 3);
 
         config.addDefault("traps.chances.arrows", 4);
         config.addDefault("traps.chances.snowstorm", 4);
@@ -58,6 +59,7 @@ public class Config {
         config.addDefault("traps.length.lowgravity", 40);
         config.addDefault("traps.length.solareclipse", 30);
         config.addDefault("traps.length.exhaustedarms", 20);
+        config.addDefault("traps.length.excavator", 20);
 
         // Rain Length
         config.addDefault("traps.rainlength.arrows", 600);
