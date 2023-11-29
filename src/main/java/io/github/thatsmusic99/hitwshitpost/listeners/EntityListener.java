@@ -60,11 +60,4 @@ public class EntityListener implements Listener {
             e.setCancelled(true);
         }
     }
-
-    @EventHandler
-    public void parrotInteract(PlayerInteractEvent e) {
-        if (e.getInteractionPoint() instanceof Parrot) {
-
-        }
-    }
 }

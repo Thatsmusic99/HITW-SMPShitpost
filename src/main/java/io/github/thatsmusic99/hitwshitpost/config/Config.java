@@ -66,7 +66,8 @@ public class Config {
         config.addDefault("traps.rainlength.snowstorm", 600);
 
         //Fun Extras
-        config.addDefault("mobs.parrotseatcookies", true);
+        config.addDefault("hotpotato.launchpower", 1.3);
+
 
         save();
     }

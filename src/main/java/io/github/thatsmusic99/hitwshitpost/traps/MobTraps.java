@@ -31,6 +31,17 @@ public class MobTraps {
         spawnMob(Config.config.getInt("traps.spawn.swimmyfish"), Guardian.class, (player, guardian) -> {});
     }
 
+    public static void spawnOPZombie() {
+
+        spawnMob(Config.config.getInt("traps.spawn.opzombie"), Zombie.class, (player, zombie) -> {
+            zombie.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
+            zombie.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
+            zombie.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
+            zombie.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS));
+            Objects.requireNonNull(zombie.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).setBaseValue(0.5);
+        });
+    }
+
     public static void spawnPillagers() {
 
         spawnMob(Config.config.getInt("traps.spawn.pillagers"), Pillager.class, (player, pillager) -> {

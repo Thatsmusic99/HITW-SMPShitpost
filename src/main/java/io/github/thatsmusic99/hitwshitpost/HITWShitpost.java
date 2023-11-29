@@ -2,6 +2,7 @@ package io.github.thatsmusic99.hitwshitpost;
 
 import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
+import io.github.thatsmusic99.hitwshitpost.items.HotPotato;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import io.github.thatsmusic99.hitwshitpost.listeners.*;
@@ -27,6 +28,10 @@ public class HITWShitpost extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         getServer().getPluginManager().registerEvents(new EntityListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
+        getServer().getPluginManager().registerEvents(new CustomItemEvents(), this);
+
+        // Custom Objects
+        new HotPotato();
 
         // Commands
         Objects.requireNonNull(getCommand("trap")).setExecutor(new InstantTrap());
