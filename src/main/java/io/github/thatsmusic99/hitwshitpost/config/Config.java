@@ -23,6 +23,8 @@ public class Config {
         config.addDefault("traps.chances.springyshoes", 20);
         config.addDefault("traps.chances.lowgravity", 20);
         config.addDefault("traps.chances.solareclipse", 15);
+        config.addDefault("traps.chances.exhaustedarms", 0);
+        config.addDefault("traps.chances.excavator", 3);
 
         config.addDefault("traps.chances.creepycrawlies", 10);
         config.addDefault("traps.chances.evencreepiercrawlies", 10);
@@ -34,8 +36,10 @@ public class Config {
         config.addDefault("traps.chances.notthebees", 5);
         config.addDefault("traps.chances.theskeletonappears", 3);
         config.addDefault("traps.chances.awman", 3);
-        config.addDefault("traps.chances.exhaustedarms", 0);
-        config.addDefault("traps.chances.excavator", 3);
+        config.addDefault("traps.chances.ultrabouncy", 0);
+        config.addDefault("traps.chances.nosleep", 0);
+        config.addDefault("traps.chances.fallenchampion", 0);
+
 
         config.addDefault("traps.chances.arrows", 4);
         config.addDefault("traps.chances.snowstorm", 4);
@@ -51,6 +55,9 @@ public class Config {
         config.addDefault("traps.spawn.notthebees", 5);
         config.addDefault("traps.spawn.theskeletonappears", 1);
         config.addDefault("traps.spawn.awman", 1);
+        config.addDefault("traps.spawn.ultrabouncy", 1);
+        config.addDefault("traps.spawn.nosleep", 1);
+        config.addDefault("traps.spawn.fallenchampion", 1);
 
         // Effect Length
         config.addDefault("traps.length.legday", 40);
@@ -67,6 +74,7 @@ public class Config {
 
         //Fun Extras
         config.addDefault("hotpotato.launchpower", 1.3);
+        config.addDefault("ultrabouncy.knockback", 5.0);
 
 
         save();

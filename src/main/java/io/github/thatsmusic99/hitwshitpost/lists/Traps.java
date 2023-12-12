@@ -24,6 +24,9 @@ public enum Traps {
     THE_SKELETON_APPEARS(Config.config.getInt("traps.chances.theskeletonappears")),
     ARROWS(Config.config.getInt("traps.chances.arrows")),
     SNOWSTORM(Config.config.getInt("traps.chances.snowstorm")),
+    ULTRA_BOUNCY(Config.config.getInt("traps.chances.ultrabouncy")),
+    FALLEN_CHAMPION(Config.config.getInt("traps.chances.fallenchampion")),
+    NO_SLEEP(Config.config.getInt("traps.chances.nosleep")),
     AW_MAN(Config.config.getInt("traps.chances.awman"));
 
     private final int weight;

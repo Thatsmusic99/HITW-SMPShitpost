@@ -75,6 +75,9 @@ public class HITWShitpost extends JavaPlugin {
             case SNOWSTORM -> PlayerTraps.snowballRain();
             case EXHAUSTED_ARMS -> PlayerListener.applyMineFatigue();
             case EXCAVATOR -> PlayerListener.applyHaste();
+            case NO_SLEEP -> MobTraps.spawnPhantom();
+            case FALLEN_CHAMPION -> MobTraps.spawnOPZombie();
+            case ULTRA_BOUNCY -> MobTraps.spawnBouncySlime();
         }
     }
 

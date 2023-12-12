@@ -107,6 +107,21 @@ public class InstantTrap implements TabExecutor {
                             PlayerListener.applyMineFatigue();
                         }
 
+                        case "ULTRA_BOUNCY" -> {
+                            PlayerListener.trapReveal(Traps.ULTRA_BOUNCY.name());
+                            MobTraps.spawnBouncySlime();
+                        }
+
+                        case "FALLEN_CHAMPION" -> {
+                            PlayerListener.trapReveal(Traps.FALLEN_CHAMPION.name());
+                            MobTraps.spawnOPZombie();
+                        }
+
+                        case "NO_SLEEP" -> {
+                            PlayerListener.trapReveal(Traps.NO_SLEEP.name());
+                            MobTraps.spawnPhantom();
+                        }
+
                         case "reload" -> {
                             try {
                                 Config.reload();
@@ -157,6 +172,9 @@ public class InstantTrap implements TabExecutor {
                 "EVEN_CREEPIER_CRAWLIES",
                 "ARROWS",
                 "SNOWSTORM",
+                "FALLEN_CHAMPION",
+                "ULTRA_BOUNCY",
+                "NO_SLEEP",
                 "reload"
         ));
         List<String> results = new ArrayList<>();

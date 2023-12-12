@@ -9,6 +9,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Banner;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
+import org.w3c.dom.Attr;
 
 import java.util.Objects;
 import java.util.Random;
@@ -33,12 +34,26 @@ public class MobTraps {
 
     public static void spawnOPZombie() {
 
-        spawnMob(Config.config.getInt("traps.spawn.opzombie"), Zombie.class, (player, zombie) -> {
+        spawnMob(Config.config.getInt("traps.spawn.fallenchampion"), Zombie.class, (player, zombie) -> {
             zombie.getEquipment().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
             zombie.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
             zombie.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
             zombie.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS));
-            Objects.requireNonNull(zombie.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).setBaseValue(0.5);
+
+            Objects.requireNonNull(zombie.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).setBaseValue(1);
+            Objects.requireNonNull(zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(10);
+            zombie.setHealth(10);
+
+            // Of course, we don't want anyone to have diamond armour lol
+            zombie.getEquipment().setHelmetDropChance(0f);
+            zombie.getEquipment().setChestplateDropChance(0f);
+            zombie.getEquipment().setLeggingsDropChance(0f);
+            zombie.getEquipment().setBootsDropChance(0f);
+
+            // Just in case if the zombie spawns with something in their hand.
+            if (zombie.getEquipment().getItemInMainHand().getType() != Material.AIR) {
+                zombie.getEquipment().setItemInMainHand(new ItemStack(Material.AIR));
+            }
         });
     }
 
@@ -92,12 +107,28 @@ public class MobTraps {
             slime.setTarget(player);
         });
     }
+
+    public static void spawnBouncySlime() {
+        spawnMob(Config.config.getInt("traps.spawn.ultrabouncy"), Slime.class, (player, slime) -> {
+            Objects.requireNonNull(slime.getAttribute(Attribute.GENERIC_ATTACK_KNOCKBACK)).setBaseValue(Config.config.getDouble("ultrabouncy.knockback"));
+            Objects.requireNonNull(slime.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).setBaseValue(0.1); // Haha WEAK
+            slime.setSize(2);
+            slime.setTarget(player);
+            HITWShitpost.get().getLogger().info(String.valueOf(Objects.requireNonNull(slime.getAttribute(Attribute.GENERIC_ATTACK_KNOCKBACK)).getBaseValue()));
+
+        });
+    }
+
     public static void spawnCaveSpiders() {
         spawnMob(Config.config.getInt("traps.spawn.evencreepiercrawlies"), CaveSpider.class, (player, caveSpider) -> caveSpider.setTarget(player));
     }
 
     public static void spawnPhantom() {
-        spawnMob(1, Phantom.class, (player, phantom) -> phantom.setTarget(player));
+        spawnMob(1, Phantom.class, (player, phantom) -> {
+            phantom.setTarget(player);
+            Objects.requireNonNull(phantom.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(5);
+            Objects.requireNonNull(phantom.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).setBaseValue(1);
+        });
     }
 
     public static <T extends Entity> void spawnMob(int amount, Class<T> entityClass, BiConsumer<Player, T> postSpawn) {

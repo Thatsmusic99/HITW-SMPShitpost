@@ -3,6 +3,7 @@ package io.github.thatsmusic99.hitwshitpost.listeners;
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.block.data.type.Fire;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -15,6 +16,8 @@ import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Objects;
 
 public class EntityListener implements Listener {
     @EventHandler
@@ -57,6 +60,12 @@ public class EntityListener implements Listener {
     @EventHandler
     public void fireCreation(BlockIgniteEvent e) {
         if (e.getCause() == BlockIgniteEvent.IgniteCause.FIREBALL) {
+            e.setCancelled(true);
+        }
+    }
+
+    public void noSplitting(SlimeSplitEvent e) {
+        if (Objects.requireNonNull(e.getEntity().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).getBaseValue() == 0) {
             e.setCancelled(true);
         }
     }

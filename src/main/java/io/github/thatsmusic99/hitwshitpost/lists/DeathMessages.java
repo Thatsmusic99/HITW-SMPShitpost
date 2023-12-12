@@ -79,7 +79,8 @@ public class DeathMessages {
     public static final List<String> CREEPER = new ArrayList<>(Arrays.asList(
             "&6{player} &7wanted to hug &6{mob} &7and got what was coming.",
             "&6{mob}&7!? Aw man! (&6{player}&7 got the bad ending.)",
-            "&6{player} &7has found out that plants can be explosive."
+            "&6{player} &7has found out that plants can be explosive.",
+            "&6{mob} &7just skadoosh'd &6{player}&7!"
     ));
 
     public static final List<String> PLAYER = new ArrayList<>(Arrays.asList(
