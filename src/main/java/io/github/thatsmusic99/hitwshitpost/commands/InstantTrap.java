@@ -2,9 +2,7 @@ package io.github.thatsmusic99.hitwshitpost.commands;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
-import io.github.thatsmusic99.hitwshitpost.traps.PlayerTraps;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
-import io.github.thatsmusic99.hitwshitpost.traps.MobTraps;
 import io.github.thatsmusic99.hitwshitpost.listeners.PlayerListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -25,104 +23,12 @@ public class InstantTrap implements TabExecutor {
 
             if (player.hasPermission("hitw.admin")) {
                 if (args.length > 0) {
-                    switch (args[0]) {
-                        case "THE_SKELETON_APPEARS" -> {
-                            PlayerListener.trapReveal(Traps.THE_SKELETON_APPEARS.name());
-                            MobTraps.spawnSkeleton();
-                        }
-                        case "SUPER_SPEED" -> {
-                            PlayerListener.trapReveal(Traps.SUPER_SPEED.name());
-                            PlayerListener.applySpeed();
-                        }
-                        case "LEG_DAY" -> {
-                            PlayerListener.trapReveal(Traps.LEG_DAY.name());
-                            PlayerListener.applySlow();
-                        }
-                        case "SPRINGY_SHOES" -> {
-                            PlayerListener.trapReveal(Traps.SPRINGY_SHOES.name());
-                            PlayerListener.applySpringy();
-                        }
-                        case "LOW_GRAVITY" -> {
-                            PlayerListener.trapReveal(Traps.LOW_GRAVITY.name());
-                            PlayerListener.applyGravity();
-                        }
-                        case "SO_LONELY" -> {
-                            PlayerListener.trapReveal(Traps.SO_LONELY.name());
-                            MobTraps.spawnZombies();
-                        }
-                        case "SWIMMY_FISH" -> {
-                            PlayerListener.trapReveal(Traps.SWIMMY_FISH.name());
-                            MobTraps.spawnFish();
-                        }
-                        case "PILLAGERS" -> {
-                            PlayerListener.trapReveal(Traps.PILLAGERS.name());
-                            MobTraps.spawnPillagers();
-                        }
-                        case "JACK_FROST" -> {
-                            PlayerListener.trapReveal(Traps.JACK_FROST.name());
-                            MobTraps.spawnJackFrost();
-                        }
-                        case "CREEPY_CRAWLIES" -> {
-                            PlayerListener.trapReveal(Traps.CREEPY_CRAWLIES.name());
-                            MobTraps.spawnSpiders();
-                        }
-                        case "AW_MAN" -> {
-                            PlayerListener.trapReveal(Traps.AW_MAN.name());
-                            MobTraps.spawnCreeper();
-                        }
-                        case "FEELING_HOT" -> {
-                            PlayerListener.trapReveal(Traps.FEELING_HOT.name());
-                            MobTraps.spawnBlaze();
-                        }
-                        case "REVENGE" -> {
-                            PlayerListener.trapReveal(Traps.REVENGE.name());
-                            MobTraps.spawnSlimes();
-                        }
-                        case "NOT_THE_BEES" -> {
-                            PlayerListener.trapReveal(Traps.NOT_THE_BEES.name());
-                            MobTraps.spawnBees();
-                        }
-                        case "SOLAR_ECLIPSE" -> {
-                            PlayerListener.trapReveal(Traps.SOLAR_ECLIPSE.name());
-                            PlayerListener.applyDarkness();
-                        }
-
-                        case "EVEN_CREEPIER_CRAWLIES" -> {
-                            PlayerListener.trapReveal(Traps.EVEN_CREEPIER_CRAWLIES.name());
-                            MobTraps.spawnCaveSpiders();
-                        }
-
-                        case "ARROWS" -> {
-                            PlayerListener.trapReveal(Traps.ARROWS.name());
-                            PlayerTraps.ArrowRain();
-                        }
-
-                        case "SNOWSTORM" -> {
-                            PlayerListener.trapReveal(Traps.SNOWSTORM.name());
-                            PlayerTraps.snowballRain();
-                        }
-
-                        case "EXHAUSTED_ARMS" -> {
-                            PlayerListener.trapReveal(Traps.EXHAUSTED_ARMS.name());
-                            PlayerListener.applyMineFatigue();
-                        }
-
-                        case "ULTRA_BOUNCY" -> {
-                            PlayerListener.trapReveal(Traps.ULTRA_BOUNCY.name());
-                            MobTraps.spawnBouncySlime();
-                        }
-
-                        case "FALLEN_CHAMPION" -> {
-                            PlayerListener.trapReveal(Traps.FALLEN_CHAMPION.name());
-                            MobTraps.spawnOPZombie();
-                        }
-
-                        case "NO_SLEEP" -> {
-                            PlayerListener.trapReveal(Traps.NO_SLEEP.name());
-                            MobTraps.spawnPhantom();
-                        }
-
-                        case "reload" -> {
+                    try {
+                        Traps trap = Traps.valueOf(args[0]);
+                        PlayerListener.trapReveal(trap.name());
+                        trap.getTrap().run();
+                    } catch (IllegalArgumentException ex) {
+                        if (args[0].equalsIgnoreCase("reload")) {
                             try {
                                 Config.reload();
                             } catch (IOException e) {
@@ -130,9 +36,8 @@ public class InstantTrap implements TabExecutor {
                             }
                             sender.sendMessage(ChatColor.GREEN + "Config reloaded!");
                             return true;
-                        }
 
-                        default -> {
+                        } else {
                             sender.sendMessage(ChatColor.RED + "You may have typo'd the trap name. Try again!");
                             return false;
                         }
