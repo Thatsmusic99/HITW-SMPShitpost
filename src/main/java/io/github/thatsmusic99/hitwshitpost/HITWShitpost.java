@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost;
 
 import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
+import io.github.thatsmusic99.hitwshitpost.commands.KeepBag;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
 import io.github.thatsmusic99.hitwshitpost.items.HotPotato;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
@@ -12,6 +13,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
+import java.io.ObjectStreamException;
 import java.util.Objects;
 
 public class HITWShitpost extends JavaPlugin {
@@ -36,6 +38,9 @@ public class HITWShitpost extends JavaPlugin {
         // Commands
         Objects.requireNonNull(getCommand("trap")).setExecutor(new InstantTrap());
         Objects.requireNonNull(getCommand("trap")).setTabCompleter(new InstantTrap());
+
+        Objects.requireNonNull(getCommand("keepbag")).setExecutor(new KeepBag());
+        Objects.requireNonNull(getCommand("keepbag")).setTabCompleter(new KeepBag());
 
         // BossBar
         final BossBarManager bossBarManager = new BossBarManager();

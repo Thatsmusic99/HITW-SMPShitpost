@@ -2,6 +2,7 @@ package io.github.thatsmusic99.hitwshitpost.listeners;
 
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.config.KeepInvList;
 import io.github.thatsmusic99.hitwshitpost.lists.DeathMessages;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -27,6 +28,11 @@ public class PlayerDeathListener implements Listener {
         EntityDamageEvent.DamageCause cause = Objects.requireNonNull(e.getPlayer().getLastDamageCause()).getCause();
         Random rand = new Random();
         HITWShitpost.get().getLogger().info(e.getPlayer().getLastDamageCause().getCause().name());
+
+        if (KeepInvList.getPlayer(player)) {
+            e.setKeepInventory(true);
+            e.getDrops().clear();
+        }
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.playSound(Sound.sound(Key.key("hitwsmp:sfx_death"), Sound.Source.NEUTRAL, 5.0f, 1.0f), Sound.Emitter.self());

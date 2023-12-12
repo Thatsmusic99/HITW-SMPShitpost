@@ -10,3 +10,5 @@ permissions:
 commands:
   trap:
     description: Instantly activate a random trap.
+  keepbag:
+    description: Allows players to keep their inventory on death

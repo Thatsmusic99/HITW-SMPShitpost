@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.listeners;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.config.KeepInvList;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
