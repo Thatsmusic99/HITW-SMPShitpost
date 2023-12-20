@@ -4,6 +4,7 @@ import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.commands.KeepBag;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
 import io.github.thatsmusic99.hitwshitpost.items.HotPotato;
+import io.github.thatsmusic99.hitwshitpost.items.RedyableTerracotta;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import io.github.thatsmusic99.hitwshitpost.listeners.*;
@@ -32,6 +33,7 @@ public class HITWShitpost extends JavaPlugin {
 
         // Custom Objects
         new HotPotato();
+        new RedyableTerracotta();
 
         // Commands
         Objects.requireNonNull(getCommand("trap")).setExecutor(new InstantTrap());
