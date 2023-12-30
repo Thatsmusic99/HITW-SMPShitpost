@@ -4,9 +4,12 @@ import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
@@ -67,6 +70,26 @@ public class PlayerTraps {
             if (projectile.equals(EntityType.ARROW)) {
                 Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), entity::remove, 60);
             }
+        }
+    }
+
+    public static void lightningStrike() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            Location pLocation = player.getLocation();
+
+            new BukkitRunnable() {
+                int i = 1;
+                @Override
+                public void run() {
+                    if (i <= 3) {
+                        player.playSound(pLocation, Sound.UI_BUTTON_CLICK, 2.0f, 2.0f);
+                        i++;
+                    } else {
+                        player.getWorld().strikeLightning(pLocation);
+                        cancel();
+                    }
+                }
+            }.runTaskTimer(HITWShitpost.get(), 20L, 10L);
         }
     }
 }

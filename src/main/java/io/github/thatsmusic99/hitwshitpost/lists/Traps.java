@@ -30,6 +30,7 @@ public enum Traps {
     ULTRA_BOUNCY(Config.config.getInt("traps.chances.ultrabouncy"), MobTraps::spawnBouncySlime),
     FALLEN_CHAMPION(Config.config.getInt("traps.chances.fallenchampion"), MobTraps::spawnOPZombie),
     NO_SLEEP(Config.config.getInt("traps.chances.nosleep"), MobTraps::spawnPhantom),
+    THORS_RAGE(Config.config.getInt("traps.chances.thorsrage"), PlayerTraps::lightningStrike),
     AW_MAN(Config.config.getInt("traps.chances.awman"), MobTraps::spawnCreeper);
 
     private final int weight;

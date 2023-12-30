@@ -80,6 +80,7 @@ public class InstantTrap implements TabExecutor {
                 "FALLEN_CHAMPION",
                 "ULTRA_BOUNCY",
                 "NO_SLEEP",
+                "THORS_RAGE",
                 "reload"
         ));
         List<String> results = new ArrayList<>();

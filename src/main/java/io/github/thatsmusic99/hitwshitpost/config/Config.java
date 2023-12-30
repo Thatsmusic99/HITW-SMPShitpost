@@ -26,6 +26,7 @@ public class Config {
         config.addDefault("traps.chances.exhaustedarms", 0);
         config.addDefault("traps.chances.excavator", 3);
 
+
         config.addDefault("traps.chances.creepycrawlies", 10);
         config.addDefault("traps.chances.evencreepiercrawlies", 10);
         config.addDefault("traps.chances.swimmyfish", 10);
@@ -39,7 +40,7 @@ public class Config {
         config.addDefault("traps.chances.ultrabouncy", 0);
         config.addDefault("traps.chances.nosleep", 0);
         config.addDefault("traps.chances.fallenchampion", 0);
-
+        config.addDefault("traps.chances.thorsrage", 7);
 
         config.addDefault("traps.chances.arrows", 4);
         config.addDefault("traps.chances.snowstorm", 4);
