@@ -39,7 +39,6 @@ public class RedyableTerracotta {
         for (DyeColor dyeColor : DyeColor.values()) {
             Material dyeItem = Material.getMaterial(dyeColor.toString() + "_DYE");
             String color = dyeColor.toString() + "_TERRACOTTA";
-            HITWShitpost.get().getLogger().info(color);
             NamespacedKey theColor = new NamespacedKey(HITWShitpost.get(), color);
             ShapelessRecipe theRecipe = new ShapelessRecipe(theColor, new ItemStack(Objects.requireNonNull(Material.getMaterial(color))));
 
