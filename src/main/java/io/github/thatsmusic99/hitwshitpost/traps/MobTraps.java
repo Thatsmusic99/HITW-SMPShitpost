@@ -40,8 +40,8 @@ public class MobTraps {
             zombie.getEquipment().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
             zombie.getEquipment().setBoots(new ItemStack(Material.DIAMOND_BOOTS));
 
-            Objects.requireNonNull(zombie.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).setBaseValue(1);
-            Objects.requireNonNull(zombie.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(10);
+            Objects.requireNonNull(zombie.getAttribute(Attribute.ATTACK_DAMAGE)).setBaseValue(1);
+            Objects.requireNonNull(zombie.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(10);
             zombie.setHealth(10);
 
             // Of course, we don't want anyone to have diamond armour lol
@@ -76,8 +76,8 @@ public class MobTraps {
 
         spawnMob(Config.config.getInt("traps.spawn.awman"), Creeper.class, (player, creeper) -> {
             creeper.setTarget(player);
-            Objects.requireNonNull(creeper.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.4);
-            Objects.requireNonNull(creeper.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(1);
+            Objects.requireNonNull(creeper.getAttribute(Attribute.MOVEMENT_SPEED)).setBaseValue(0.4);
+            Objects.requireNonNull(creeper.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(1);
             creeper.setHealth(1);
         });
     }
@@ -90,8 +90,8 @@ public class MobTraps {
     public static void spawnSkeleton() {
 
         spawnMob(Config.config.getInt("traps.spawn.theskeletonappears"), Skeleton.class, (player, skeleton) -> {
-            Objects.requireNonNull(skeleton.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(10);
-            Objects.requireNonNull(skeleton.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED)).setBaseValue(2);
+            Objects.requireNonNull(skeleton.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(10);
+            Objects.requireNonNull(skeleton.getAttribute(Attribute.MOVEMENT_SPEED)).setBaseValue(2);
             skeleton.setHealth(10);
             skeleton.setTarget(player);
         });
@@ -110,11 +110,11 @@ public class MobTraps {
 
     public static void spawnBouncySlime() {
         spawnMob(Config.config.getInt("traps.spawn.ultrabouncy"), Slime.class, (player, slime) -> {
-            Objects.requireNonNull(slime.getAttribute(Attribute.GENERIC_ATTACK_KNOCKBACK)).setBaseValue(Config.config.getDouble("ultrabouncy.knockback"));
-            Objects.requireNonNull(slime.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).setBaseValue(0.1); // Haha WEAK
+            Objects.requireNonNull(slime.getAttribute(Attribute.ATTACK_KNOCKBACK)).setBaseValue(Config.config.getDouble("ultrabouncy.knockback"));
+            Objects.requireNonNull(slime.getAttribute(Attribute.ATTACK_DAMAGE)).setBaseValue(0.1); // Haha WEAK
             slime.setSize(2);
             slime.setTarget(player);
-            HITWShitpost.get().getLogger().info(String.valueOf(Objects.requireNonNull(slime.getAttribute(Attribute.GENERIC_ATTACK_KNOCKBACK)).getBaseValue()));
+            HITWShitpost.get().getLogger().info(String.valueOf(Objects.requireNonNull(slime.getAttribute(Attribute.ATTACK_KNOCKBACK)).getBaseValue()));
 
         });
     }
@@ -126,8 +126,8 @@ public class MobTraps {
     public static void spawnPhantom() {
         spawnMob(1, Phantom.class, (player, phantom) -> {
             phantom.setTarget(player);
-            Objects.requireNonNull(phantom.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(5);
-            Objects.requireNonNull(phantom.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).setBaseValue(1);
+            Objects.requireNonNull(phantom.getAttribute(Attribute.MAX_HEALTH)).setBaseValue(5);
+            Objects.requireNonNull(phantom.getAttribute(Attribute.ATTACK_DAMAGE)).setBaseValue(1);
         });
     }
 
