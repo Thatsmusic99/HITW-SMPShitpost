@@ -25,13 +25,20 @@ public class HotPotato {
         ShapedRecipe recipe = new ShapedRecipe(key, hotPotato);
 
         recipe.shape(
+                " B ",
+                "BGB",
+                " B "
+        );
+        /* OLD RECIPE - Material.AIR is no longer a valid ingredient
+        recipe.shape(
                 "ABA",
                 "BGB",
                 "ABA"
         );
+        */
 
         // A = Air, B = Baked Potato, G = Gunpowder
-        recipe.setIngredient('A', Material.AIR);
+        //recipe.setIngredient('A', Material.AIR); <- Later version does not want the use of air anymore.
         recipe.setIngredient('B', Material.BAKED_POTATO);
         recipe.setIngredient('G', Material.GUNPOWDER);
 
