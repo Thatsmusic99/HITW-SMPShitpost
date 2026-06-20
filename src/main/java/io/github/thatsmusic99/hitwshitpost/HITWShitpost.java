@@ -3,17 +3,19 @@ package io.github.thatsmusic99.hitwshitpost;
 import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.commands.KeepBag;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
+import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import io.github.thatsmusic99.hitwshitpost.items.HotPotato;
 import io.github.thatsmusic99.hitwshitpost.items.RedyableGlass;
 import io.github.thatsmusic99.hitwshitpost.items.RedyableTerracotta;
+import io.github.thatsmusic99.hitwshitpost.listeners.CustomItemEvents;
+import io.github.thatsmusic99.hitwshitpost.listeners.EntityListener;
+import io.github.thatsmusic99.hitwshitpost.listeners.PlayerDeathListener;
+import io.github.thatsmusic99.hitwshitpost.listeners.PlayerListener;
 import io.github.thatsmusic99.hitwshitpost.lists.Traps;
-import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
-import io.github.thatsmusic99.hitwshitpost.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
-import java.io.ObjectStreamException;
 import java.util.Objects;
 
 public class HITWShitpost extends JavaPlugin {
