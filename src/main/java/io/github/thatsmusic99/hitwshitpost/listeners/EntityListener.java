@@ -1,22 +1,17 @@
 package io.github.thatsmusic99.hitwshitpost.listeners;
 
-import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
-import io.github.thatsmusic99.hitwshitpost.config.KeepInvList;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.block.data.type.Fire;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockIgniteEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.*;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.entity.SlimeSplitEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
@@ -25,7 +20,7 @@ public class EntityListener implements Listener {
     public void mobDeath(EntityDeathEvent e) {
         if (e.getEntity() instanceof Blaze blaze) {
             // Mainly used to prevent the spawned mob from dropping blaze rods outside of the nether.
-            if (blaze.getWorld().getName().equals(Bukkit.getServer().getWorlds().get(0).getName())) {
+            if (blaze.getWorld().getName().equals(Bukkit.getServer().getWorlds().getFirst().getName())) {
                 e.getDrops().clear();
             }
         }
@@ -66,7 +61,7 @@ public class EntityListener implements Listener {
     }
 
     public void noSplitting(SlimeSplitEvent e) {
-        if (Objects.requireNonNull(e.getEntity().getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).getBaseValue() == 0) {
+        if (Objects.requireNonNull(e.getEntity().getAttribute(Attribute.ATTACK_DAMAGE)).getBaseValue() == 0) {
             e.setCancelled(true);
         }
     }

@@ -23,11 +23,11 @@ import java.util.Random;
 public class PlayerListener implements Listener {
     static int sec = 20;
 
-    static final PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, PotionEffect.INFINITE_DURATION, 1, false, false);
+    static final PotionEffect JUMP_BOOSTBoost = new PotionEffect(PotionEffectType.JUMP_BOOST, PotionEffect.INFINITE_DURATION, 1, false, false);
     static final PotionEffect reveal = new PotionEffect(PotionEffectType.BLINDNESS, (sec), 0, false, false);
 
     // Potion Effects for Traps
-    //static PotionEffect springy = new PotionEffect(PotionEffectType.JUMP, (sec * Config.config.getInt("traps.length.springyshoes")), 3, false, false);
+    //static PotionEffect springy = new PotionEffect(PotionEffectType.JUMP_BOOST, (sec * Config.config.getInt("traps.length.springyshoes")), 3, false, false);
     //static PotionEffect speedBoost = new PotionEffect(PotionEffectType.SPEED, (sec * Config.config.getInt("traps.length.superspeed")), 4, false, false);
     //static PotionEffect legDay = new PotionEffect(PotionEffectType.SLOW, (sec * Config.config.getInt("traps.length.legday")), 2, false, false);
     //static PotionEffect gravity = new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * Config.config.getInt("traps.length.lowgravity")), 1, false, false);
@@ -42,7 +42,7 @@ public class PlayerListener implements Listener {
 
     public static void applySlow() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, (sec * Config.config.getInt("traps.length.legday")), 2, false, false));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, (sec * Config.config.getInt("traps.length.legday")), 2, false, false));
         }
     }
 
@@ -54,8 +54,8 @@ public class PlayerListener implements Listener {
 
     public static void applySpringy() {
         for (Player p : Bukkit.getOnlinePlayers())  {
-            p.removePotionEffect(PotionEffectType.JUMP);
-            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, (sec * Config.config.getInt("traps.length.springyshoes")), 3, false, false));
+            p.removePotionEffect(PotionEffectType.JUMP_BOOST);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, (sec * Config.config.getInt("traps.length.springyshoes")), 3, false, false));
         }
     }
 
@@ -67,13 +67,13 @@ public class PlayerListener implements Listener {
 
     public static void applyMineFatigue() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, (sec * Config.config.getInt("traps.length.exhaustedarms")), 1, false, false));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, (sec * Config.config.getInt("traps.length.exhaustedarms")), 1, false, false));
         }
     }
 
     public static void applyHaste() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, (sec * Config.config.getInt("traps.length.excavator")), 1, false, false));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, (sec * Config.config.getInt("traps.length.excavator")), 1, false, false));
         }
     }
 
@@ -115,17 +115,17 @@ public class PlayerListener implements Listener {
             }
         }
 
-        jumpBoost.apply(player);
+        JUMP_BOOSTBoost.apply(player);
         BossBarManager.get().addPlayer(player);
     }
-    // Quit Event - making sure to remove the jump boost from the player.
+    // Quit Event - making sure to remove the JUMP_BOOST boost from the player.
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
         Player player = e.getPlayer();
         Random rand = new Random();
 
-        if (player.hasPotionEffect(PotionEffectType.JUMP)) {
-            player.removePotionEffect(PotionEffectType.JUMP);
+        if (player.hasPotionEffect(PotionEffectType.JUMP_BOOST)) {
+            player.removePotionEffect(PotionEffectType.JUMP_BOOST);
         }
 
         for (Player p : Bukkit.getOnlinePlayers()) {
@@ -142,7 +142,7 @@ public class PlayerListener implements Listener {
 
     }
 
-    // Event for when the player dies or drinks milk, that the jump boost gets re-applied.
+    // Event for when the player dies or drinks milk, that the JUMP_BOOST boost gets re-applied.
     @EventHandler
     public void playerDrinkEvent(EntityPotionEffectEvent e) {
         if (e.getEntity() instanceof Player player) {
@@ -150,7 +150,7 @@ public class PlayerListener implements Listener {
                 Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), new Runnable() {
                     @Override
                     public void run() {
-                        jumpBoost.apply(player);
+                        JUMP_BOOSTBoost.apply(player);
                     }
                     }, 5L);
             }
@@ -164,7 +164,7 @@ public class PlayerListener implements Listener {
                 Bukkit.getScheduler().runTaskLater(HITWShitpost.get(), new Runnable() {
                     @Override
                     public void run() {
-                        player.addPotionEffect(jumpBoost);
+                        player.addPotionEffect(JUMP_BOOSTBoost);
                     }
                 }, 0L);
             }

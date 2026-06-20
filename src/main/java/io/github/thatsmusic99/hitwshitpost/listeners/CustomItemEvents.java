@@ -14,9 +14,9 @@ import org.bukkit.util.Vector;
 public class CustomItemEvents implements Listener {
     @EventHandler
     public void onConsumption (PlayerItemConsumeEvent e) {
-        if (e.getItem().getType() == Material.BAKED_POTATO && ChatColor.stripColor(e.getItem().getItemMeta().getDisplayName()).equals("Hot Potato") && e.getItem().getItemMeta().hasEnchant(Enchantment.ARROW_DAMAGE)) {
+        if (e.getItem().getType() == Material.BAKED_POTATO && ChatColor.stripColor(e.getItem().getItemMeta().getDisplayName()).equals("Hot Potato") && e.getItem().getItemMeta().hasEnchant(Enchantment.POWER)) {
             Player player = e.getPlayer();
-            player.spawnParticle(Particle.EXPLOSION_NORMAL, player.getLocation(), 10, 3, 3, 3);
+            player.spawnParticle(Particle.EXPLOSION, player.getLocation(), 10, 3, 3, 3);
             player.playSound(player.getLocation(), org.bukkit.Sound.ENTITY_GENERIC_EXPLODE, 2.0f, 1.0f);
             player.setVelocity(new Vector(0, Config.config.getDouble("hotpotato.launchpower"), 0));
         }
