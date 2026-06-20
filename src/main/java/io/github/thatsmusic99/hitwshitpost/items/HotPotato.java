@@ -19,7 +19,7 @@ public class HotPotato {
         hotPotato.setItemMeta(meta);
 
         hotPotato.setAmount(4);
-        hotPotato.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
+        hotPotato.addUnsafeEnchantment(Enchantment.POWER, 1);
 
         NamespacedKey key = new NamespacedKey(HITWShitpost.get(), "hot_potato");
         ShapedRecipe recipe = new ShapedRecipe(key, hotPotato);
