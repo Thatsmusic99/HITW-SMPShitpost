@@ -1,6 +1,7 @@
 package io.github.thatsmusic99.hitwshitpost.listeners;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
 import io.github.thatsmusic99.hitwshitpost.lists.JoinQuitMessages;
@@ -79,6 +80,8 @@ public class PlayerListener implements Listener {
 
     public static void trapReveal(String trapName) {
         for (Player p: Bukkit.getOnlinePlayers()) {
+            if (InstantTrap.tempBypass.contains(p.getUniqueId())) {continue;} // Spare player from hell if bypass enabled.
+
             p.addPotionEffect(reveal);
 
             String trap = trapName.replace('_', ' ');

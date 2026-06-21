@@ -28,18 +28,26 @@ public class InstantTrap implements TabExecutor {
                         PlayerListener.trapReveal(trap.name());
                         trap.getTrap().run();
                     } catch (IllegalArgumentException ex) {
-                        if (args[0].equalsIgnoreCase("reload")) {
-                            try {
-                                Config.reload();
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
+                        switch (args[0].toLowerCase()) {
+                            case "reload" -> {
+                                try {
+                                    Config.reload();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                sender.sendMessage(ChatColor.GREEN + "Config reloaded!");
+                                return true;
                             }
-                            sender.sendMessage(ChatColor.GREEN + "Config reloaded!");
-                            return true;
 
-                        } else {
-                            sender.sendMessage(ChatColor.RED + "You may have typo'd the trap name. Try again!");
-                            return false;
+                            case "bypass" -> {
+                                UUID uuid = player.getUniqueId();
+                                return tempBypass.contains(uuid) ? tempBypass.remove(uuid) : tempBypass.add(uuid);
+                            }
+
+                            default -> {
+                                sender.sendMessage(ChatColor.RED + "You may have typo'd the trap name. Try again!");
+                                return false;
+                            }
                         }
                     }
                 } else {
@@ -81,7 +89,8 @@ public class InstantTrap implements TabExecutor {
                 "ULTRA_BOUNCY",
                 "NO_SLEEP",
                 "THORS_RAGE",
-                "reload"
+                "reload",
+                "bypass"
         ));
         List<String> results = new ArrayList<>();
         if (args.length == 1) {
@@ -90,4 +99,6 @@ public class InstantTrap implements TabExecutor {
         }
         return results;
     }
+
+    public static List<UUID> tempBypass = new ArrayList<>();
 }
