@@ -1,6 +1,8 @@
 package io.github.thatsmusic99.hitwshitpost.items;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.Consumable;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -9,14 +11,20 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.components.FoodComponent;
 
 public class HotPotato {
     public HotPotato() {
         ItemStack hotPotato = new ItemStack(Material.BAKED_POTATO);
         ItemMeta meta = hotPotato.getItemMeta();
 
+        Consumable properties = Consumable.consumable()
+                .consumeSeconds(0.4f)
+                .build();
+
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6&lHot &c&lPotato"));
         hotPotato.setItemMeta(meta);
+        hotPotato.setData(DataComponentTypes.CONSUMABLE, properties);
 
         hotPotato.setAmount(4);
         hotPotato.addUnsafeEnchantment(Enchantment.POWER, 1);
