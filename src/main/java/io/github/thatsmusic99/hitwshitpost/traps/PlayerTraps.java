@@ -1,7 +1,9 @@
 package io.github.thatsmusic99.hitwshitpost.traps;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
+import io.github.thatsmusic99.hitwshitpost.hooks.PlayerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -75,6 +77,8 @@ public class PlayerTraps {
 
     public static void lightningStrike() {
         for (Player player : Bukkit.getOnlinePlayers()) {
+            if (PlayerManager.playerHasBypass(player)) {continue;}
+
             Location pLocation = player.getLocation();
 
             new BukkitRunnable() {

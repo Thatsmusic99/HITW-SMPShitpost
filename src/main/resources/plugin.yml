@@ -2,6 +2,7 @@ name: HITWShitpost
 version: 2.0
 main: io.github.thatsmusic99.hitwshitpost.HITWShitpost
 api-version: 26.1.2
+depend: [WorldGuard]
 
 permissions:
   hitw.admin:

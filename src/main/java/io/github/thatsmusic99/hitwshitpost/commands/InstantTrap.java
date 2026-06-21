@@ -41,7 +41,14 @@ public class InstantTrap implements TabExecutor {
 
                             case "bypass" -> {
                                 UUID uuid = player.getUniqueId();
-                                return tempBypass.contains(uuid) ? tempBypass.remove(uuid) : tempBypass.add(uuid);
+                                if (tempBypass.contains(uuid)) {
+                                    tempBypass.remove(uuid);
+                                    sender.sendMessage(ChatColor.GREEN + "Bypass disabled.");
+                                } else {
+                                    tempBypass.add(uuid);
+                                    sender.sendMessage(ChatColor.GREEN + "Bypass enabled.");
+                                }
+                                return true;
                             }
 
                             default -> {

@@ -12,6 +12,8 @@ repositories {
         name = "papermc"
         url = uri("https://repo.papermc.io/repository/maven-public/")
     }
+
+    maven {url = uri("https://maven.enginehub.org/repo/")}
 }
 
 dependencies {
@@ -19,6 +21,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 
     compileOnly("io.papermc.paper:paper-api:26.1.2.build.+")
+    compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.17")
 }
 
 tasks.getByName<Test>("test") {

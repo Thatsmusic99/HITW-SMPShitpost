@@ -1,7 +1,9 @@
 package io.github.thatsmusic99.hitwshitpost.traps;
 
 import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
+import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
+import io.github.thatsmusic99.hitwshitpost.hooks.PlayerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -135,6 +137,7 @@ public class MobTraps {
         Random rand = new Random();
 
         for (Player p : Bukkit.getOnlinePlayers()) {
+            if (PlayerManager.playerHasBypass(p)) {continue;}
             for (int i = 0; i < amount; i++) {
                 double x = rand.nextInt(10) - 5 + p.getX();
                 double y = p.getY();

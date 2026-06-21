@@ -4,6 +4,7 @@ import io.github.thatsmusic99.hitwshitpost.HITWShitpost;
 import io.github.thatsmusic99.hitwshitpost.commands.InstantTrap;
 import io.github.thatsmusic99.hitwshitpost.config.Config;
 import io.github.thatsmusic99.hitwshitpost.hooks.BossBarManager;
+import io.github.thatsmusic99.hitwshitpost.hooks.PlayerManager;
 import io.github.thatsmusic99.hitwshitpost.lists.JoinQuitMessages;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -37,24 +38,28 @@ public class PlayerListener implements Listener {
     // Speedboost Trap
     public static void applySpeed() {
         for (Player p : Bukkit.getOnlinePlayers())  {
+            if (PlayerManager.playerHasBypass(p)) {continue;}
             p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, (sec * Config.config.getInt("traps.length.superspeed")), 4, false, false));
         }
     }
 
     public static void applySlow() {
         for (Player p : Bukkit.getOnlinePlayers()) {
+            if (PlayerManager.playerHasBypass(p)) {continue;}
             p.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, (sec * Config.config.getInt("traps.length.legday")), 2, false, false));
         }
     }
 
     public static void applyDarkness() {
         for (Player p : Bukkit.getOnlinePlayers()) {
+            if (PlayerManager.playerHasBypass(p)) {continue;}
             p.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, (sec * Config.config.getInt("traps.length.solareclipse")), 0, false, false));
         }
     }
 
     public static void applySpringy() {
         for (Player p : Bukkit.getOnlinePlayers())  {
+            if (PlayerManager.playerHasBypass(p)) {continue;}
             p.removePotionEffect(PotionEffectType.JUMP_BOOST);
             p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, (sec * Config.config.getInt("traps.length.springyshoes")), 3, false, false));
         }
@@ -62,25 +67,32 @@ public class PlayerListener implements Listener {
 
     public static void applyGravity() {
         for (Player p : Bukkit.getOnlinePlayers()) {
+            if (PlayerManager.playerHasBypass(p)) {continue;}
             p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, (sec * Config.config.getInt("traps.length.lowgravity")), 1, false, false));
         }
     }
 
     public static void applyMineFatigue() {
         for (Player p : Bukkit.getOnlinePlayers()) {
+            if (PlayerManager.playerHasBypass(p)) {continue;}
             p.addPotionEffect(new PotionEffect(PotionEffectType.MINING_FATIGUE, (sec * Config.config.getInt("traps.length.exhaustedarms")), 1, false, false));
         }
     }
 
     public static void applyHaste() {
         for (Player p : Bukkit.getOnlinePlayers()) {
+            if (PlayerManager.playerHasBypass(p)) {continue;}
             p.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, (sec * Config.config.getInt("traps.length.excavator")), 1, false, false));
         }
     }
 
     public static void trapReveal(String trapName) {
         for (Player p: Bukkit.getOnlinePlayers()) {
-            if (InstantTrap.tempBypass.contains(p.getUniqueId())) {continue;} // Spare player from hell if bypass enabled.
+            if (PlayerManager.playerHasBypass(p)) {
+                p.sendTitle("You are safe!", ChatColor.GOLD + "You are inside a region.");
+                p.playSound(Sound.sound(org.bukkit.Sound.ENTITY_EXPERIENCE_ORB_PICKUP, Sound.Source.NEUTRAL, 5.0f, 1.0f));
+                continue;
+            }
 
             p.addPotionEffect(reveal);
 
